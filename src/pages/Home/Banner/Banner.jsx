@@ -4,7 +4,7 @@ const Banner = () => {
         <div className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full">
                 <img src="https://i.ibb.co/FH1Lvm2/matt-antonioli-T-Zdgxz-PS5k-unsplash.jpg" className="w-full" />
-                <div className="absolute hidden  md:flex justify-end md:gap-24 gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0">
+                <div className="absolute hidden md:flex justify-end md:gap-24 gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0">
                     <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                     <a href="#slide2" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
