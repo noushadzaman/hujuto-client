@@ -1,0 +1,67 @@
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.button {
+    --border-right: 4px;
+    --text-stroke-color: #ccb89b;
+    --animation-color: #BFA37C;
+    --fs-size: 1em;
+    letter-spacing: 5px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+
+.button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+}
+
+nav a {
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.auth {
+    padding: 17px 40px;
+    border: 0;
+    border-radius: 2px;
+    font-weight: 500;
+    color: white;
+    background-color: #d6cab8;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+}
+
+.auth:hover {
+    letter-spacing: 3px;
+    background-color: #ccb89b;
+    color: hsl(0, 0%, 100%);
+    box-shadow: #BFA37C 0px 7px 29px 0px;
+}
