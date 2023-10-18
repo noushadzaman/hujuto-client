@@ -3,7 +3,7 @@ import './Navbar.css';
 
 const Navbar = () => {
     const navLinks = <>
-        <Link to="/home">
+        <Link to="/">
             <button className="button">
                 <span>&nbsp;Home&nbsp;</span>
                 <span className="hover-text">&nbsp;Home&nbsp;</span>
@@ -19,8 +19,8 @@ const Navbar = () => {
 
         <Link to="/addProduct">
             <button className="button">
-                <span>&nbsp;Add&nbsp;</span>
-                <span className="hover-text">&nbsp;Add&nbsp;</span>
+                <span>&nbsp;Add&nbsp;Product&nbsp;</span>
+                <span className="hover-text">&nbsp;Add&nbsp;Product&nbsp;</span>
             </button>
         </Link>
 
