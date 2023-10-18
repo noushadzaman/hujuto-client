@@ -62,8 +62,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link className="auth" to="/login">
-                    Login
+                <Link className="btn-primary" to="/login">
+                    Log In
                 </Link>
             </div>
         </nav>

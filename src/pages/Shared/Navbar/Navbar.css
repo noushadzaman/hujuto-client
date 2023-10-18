@@ -45,7 +45,7 @@ nav a {
     margin-top: 5px;
 }
 
-.auth {
+.btn-primary {
     padding: 17px 40px;
     border: 0;
     border-radius: 2px;
@@ -59,7 +59,7 @@ nav a {
     transition: all .5s ease;
 }
 
-.auth:hover {
+.btn-primary:hover {
     letter-spacing: 3px;
     background-color: #ccb89b;
     color: hsl(0, 0%, 100%);
