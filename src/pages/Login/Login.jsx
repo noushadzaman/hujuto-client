@@ -1,9 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Login = () => {
+    const [error, setError] = useState('');
     const { signIn, googleSignIn } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -18,9 +20,17 @@ const Login = () => {
             .then(user => {
                 console.log(user.user);
                 navigate('/');
+                setError('');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Logged In successfully',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
             })
-            .then(error => {
-                console.log(error.message)
+            .catch(error => {
+                setError(error.message);
             })
     }
 
@@ -30,6 +40,13 @@ const Login = () => {
             .then(result => {
                 console.log(result.user)
                 navigate('/');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Logged In successfully',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
             })
             .catch(data => {
                 console.log(data)
@@ -49,13 +66,15 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Email</span>
                                 </label>
-                                <input name='email' type="email" placeholder="email" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
+                                <input name='email' type="email" placeholder="email"
+                                    className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Password</span>
                                 </label>
-                                <input name='password' type="password" placeholder="password" className="input  rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
+                                <input name='password' type="password" placeholder="password" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
+                                <p className="text-[#e96969] font-semibold mt-2 text-[14px]">{error}</p>
                                 <Link to="/register" className="text-[#BFA37C] mt-2 text-[14px] tracking-widest">New to HUJUTO? Register here!</Link>
                             </div>
                             <div className="form-control mt-6">

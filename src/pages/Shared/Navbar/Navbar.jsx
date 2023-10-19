@@ -2,11 +2,19 @@ import { Link, NavLink } from "react-router-dom";
 import './Navbar.css';
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, loading, logOut } = useContext(AuthContext);
     const handleLogOut = () => {
         logOut();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Logged out successfully',
+            showConfirmButton: false,
+            timer: 2500
+          })
     }
 
     const navLinks = <>
@@ -68,26 +76,30 @@ const Navbar = () => {
                     {navLinks}
                 </ul>
             </div>
-            <div className="navbar-end">
-                {
-                    user ?
-                        <div>
-                            <div>
-                                <img src={user?.photoURL} alt="" />
-                                <p>{user?.displayName}</p>
-                            </div>
-                            <button
-                                onClick={handleLogOut}
-                                className="btn-primary" >
-                                Log out
-                            </button>
-                        </div>
-                        :
-                        <Link className="btn-primary" to="/login">
-                            Log In
-                        </Link>
-                }
-            </div>
+            {
+                loading ?
+                    <span className="loading loading-spinner loading-lg"></span>
+                    : <div className="navbar-end">
+                        {
+                            user ?
+                                <div className="flex items-center gap-3">
+                                    <div className="flex flex-col items-center">
+                                        <img className="rounded h-[40px]" src={user?.photoURL} alt="" />
+                                        <p className="text-[#BFA37C] font-semibold text-center">{user?.displayName}</p>
+                                    </div>
+                                    <button
+                                        onClick={handleLogOut}
+                                        className="btn-primary shrink-0" >
+                                        Log out
+                                    </button>
+                                </div>
+                                :
+                                <Link className="btn-primary" to="/login">
+                                    Log In
+                                </Link>
+                        }
+                    </div>
+            }
         </nav>
     );
 };
