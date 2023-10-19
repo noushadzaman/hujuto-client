@@ -1,42 +1,49 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Navbar.css';
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut();
+    }
+
     const navLinks = <>
-        <Link to="/">
+        <NavLink to="/">
             <button className="button">
                 <span>&nbsp;Home&nbsp;</span>
                 <span className="hover-text">&nbsp;Home&nbsp;</span>
             </button>
-        </Link>
+        </NavLink>
 
-        <Link to="/myCart">
+        <NavLink to="/myCart">
             <button className="button">
                 <span>&nbsp;Cart&nbsp;</span>
                 <span className="hover-text">&nbsp;Cart&nbsp;</span>
             </button>
-        </Link>
+        </NavLink>
 
-        <Link to="/addProduct">
+        <NavLink to="/addProduct">
             <button className="button">
                 <span>&nbsp;Add&nbsp;Product&nbsp;</span>
                 <span className="hover-text">&nbsp;Add&nbsp;Product&nbsp;</span>
             </button>
-        </Link>
+        </NavLink>
 
-        <Link to="/faq">
+        <NavLink to="/faq">
             <button className="button">
                 <span>&nbsp;Faq&nbsp;</span>
                 <span className="hover-text">&nbsp;Faq&nbsp;</span>
             </button>
-        </Link>
+        </NavLink>
 
-        <Link to="/contact">
+        <NavLink to="/contact">
             <button className="button">
                 <span>&nbsp;Contact&nbsp;</span>
                 <span className="hover-text">&nbsp;Contact&nbsp;</span>
             </button>
-        </Link>
+        </NavLink>
     </>
     return (
         <nav className="navbar bg-base-100">
@@ -62,9 +69,24 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link className="btn-primary" to="/login">
-                    Log In
-                </Link>
+                {
+                    user ?
+                        <div>
+                            <div>
+                                <img src={user?.photoURL} alt="" />
+                                <p>{user?.displayName}</p>
+                            </div>
+                            <button
+                                onClick={handleLogOut}
+                                className="btn-primary" >
+                                Log out
+                            </button>
+                        </div>
+                        :
+                        <Link className="btn-primary" to="/login">
+                            Log In
+                        </Link>
+                }
             </div>
         </nav>
     );
