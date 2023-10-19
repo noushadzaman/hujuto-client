@@ -89,7 +89,7 @@ const Navbar = () => {
                                     </div>
                                     <button
                                         onClick={handleLogOut}
-                                        className="btn-primary shrink-0" >
+                                        className="btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px] shrink-0" >
                                         Log out
                                     </button>
                                 </div>
