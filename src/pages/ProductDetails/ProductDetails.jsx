@@ -3,12 +3,12 @@ import './ProductDetails.css'
 
 const ProductDetails = () => {
     const productDetails = useLoaderData();
-    const { _id, brandName, imageUrl, name, price, rating, type, shortDescription } = productDetails;
+    const {  imageUrl, name, price, rating, shortDescription } = productDetails;
 
     return (
-        <div className="card mb-[150px]">
-            <div className="card-details px-[10%]">
-                <img src={imageUrl} alt="" />
+        <div className="detailCard mb-[150px]">
+            <div className="card-details px-[10%] lg">
+                <img className="lg:px-[10%] xl:px-[20%]" src={imageUrl} alt="" />
                 <div className="px-[10%] py-[50px]">
                     <p className="text-title">{name}</p>
                     <p className="text-body">{shortDescription}</p>

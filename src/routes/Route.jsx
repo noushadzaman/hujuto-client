@@ -7,6 +7,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import BrandDetail from "../pages/BrandDetail/BrandDetail";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import Faq from "../pages/Faq/Faq";
 
 const router = createBrowserRouter([
     {
@@ -40,10 +41,10 @@ const router = createBrowserRouter([
                 element: <ProductDetails></ProductDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/vehicle/${params.id}`)
             },
-            // {
-            //     path: '/',
-            //     element: <Home></Home>
-            // },
+            {
+                path: '/faq',
+                element: <Faq></Faq>
+            },
         ]
     },
 ]);

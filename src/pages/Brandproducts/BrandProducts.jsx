@@ -13,6 +13,7 @@ const BrandProducts = ({ brandName }) => {
     const specificVehicles = allVehicles.filter(vehicle => vehicle.brandName == brandName);
 
     return (
+
         <div className="py-[100px] grid grid-cols-1 gap-5 md:w-[80%] mx-auto">
             {
                 specificVehicles.map((vehicle, index) => <BrandProductsCard
@@ -21,7 +22,6 @@ const BrandProducts = ({ brandName }) => {
                     vehicle={vehicle}
                 ></BrandProductsCard>)
             }
-
             {
                 specificVehicles.length == 0 &&
                 <div>
@@ -30,6 +30,7 @@ const BrandProducts = ({ brandName }) => {
                 </div>
             }
         </div>
+
     );
 };
 

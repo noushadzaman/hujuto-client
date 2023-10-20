@@ -27,7 +27,7 @@ const AddProduct = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold mb-8 text-center">Add product!!</h1>
+                    <h1 className="text-5xl font-bold mb-8 text-center text-[#5f5c5c]">Add product!!</h1>
                 </div>
                 <div className="card rounded-[2px] flex-shrink-0 shadow-2xl bg-base-100">
                     <form
@@ -37,59 +37,59 @@ const AddProduct = () => {
                         <div className="md:flex gap-[40px]">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">ImageUrl</span>
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">ImageUrl</span>
                                 </label>
 
-                                <input name="imageUrl" type="text" placeholder="imageUrl" className="input input-bordered w-[350px]" required />
+                                <input name="imageUrl" type="text" placeholder="imageUrl" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Name</span>
                                 </label>
 
-                                <input name="name" type="text" placeholder="name" className="input input-bordered w-[350px]" required />
-                            </div>
-                        </div>
-                        <div className="md:flex gap-[40px]">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Brand Name</span>
-                                </label>
-
-                                <input name="brandName" type="text" placeholder="brand name" className="input input-bordered w-[350px]" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Type</span>
-                                </label>
-
-                                <input name="type" type="text" placeholder="type" className="input input-bordered w-[350px]" required />
+                                <input name="name" type="text" placeholder="name" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                         </div>
                         <div className="md:flex gap-[40px]">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Price</span>
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Brand Name</span>
                                 </label>
 
-                                <input name="price" type="text" placeholder="price" className="input input-bordered w-[350px]" required />
+                                <input name="brandName" type="text" placeholder="brand name" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Rating</span>
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Type</span>
                                 </label>
 
-                                <input name="rating" type="text" placeholder="rating" className="input input-bordered w-[350px]" required />
+                                <input name="type" type="text" placeholder="type" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                            </div>
+                        </div>
+                        <div className="md:flex gap-[40px]">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Price</span>
+                                </label>
+
+                                <input name="price" type="text" placeholder="price" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Rating</span>
+                                </label>
+
+                                <input name="rating" type="text" placeholder="rating" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
 
                         </div>
                         <div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Short description</span>
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Short description</span>
                                 </label>
 
-                                <input name="shortDescription" type="text" placeholder="short description" className="input input-bordered w-[100%]" required />
+                                <input name="shortDescription" type="text" placeholder="short description" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]" required />
                             </div>
                         </div>
                         <div className="form-control mt-6">

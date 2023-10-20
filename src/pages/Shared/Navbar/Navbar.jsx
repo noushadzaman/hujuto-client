@@ -84,7 +84,7 @@ const Navbar = () => {
                             user ?
                                 <div className="flex items-center gap-3">
                                     <div className="flex flex-col items-center">
-                                        <img className="rounded h-[40px]" src={user?.photoURL} alt="" />
+                                        <img referrerPolicy="no-referrer" className="rounded h-[40px]" src={user?.photoURL} alt="" />
                                         <p className="text-[#BFA37C] font-semibold text-center">{user?.displayName}</p>
                                     </div>
                                     <button
