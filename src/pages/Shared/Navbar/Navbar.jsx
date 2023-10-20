@@ -14,7 +14,7 @@ const Navbar = () => {
             title: 'Logged out successfully',
             showConfirmButton: false,
             timer: 2500
-          })
+        })
     }
 
     const navLinks = <>
@@ -94,7 +94,7 @@ const Navbar = () => {
                                     </button>
                                 </div>
                                 :
-                                <Link className="btn-primary" to="/login">
+                                <Link className="btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px]" to="/login">
                                     Log In
                                 </Link>
                         }
