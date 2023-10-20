@@ -21,6 +21,14 @@ const BrandProducts = ({ brandName }) => {
                     vehicle={vehicle}
                 ></BrandProductsCard>)
             }
+
+            {
+                specificVehicles.length == 0 &&
+                <div>
+                    <img className="w-[30%] mx-auto" src="/public/403 Error Forbidden-bro.png" alt="" />
+                    <h2 className="text-center text-[25px] text-[#d6cab8]">Nothing found on specific brand</h2>
+                </div>
+            }
         </div>
     );
 };

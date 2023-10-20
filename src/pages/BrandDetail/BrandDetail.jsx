@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BrandProducts from "./Brandproducts/BrandProducts";
+import BrandProducts from "../Brandproducts/BrandProducts";
 
 const BrandDetail = () => {
     const [brand, setBrand] = useState([]);
