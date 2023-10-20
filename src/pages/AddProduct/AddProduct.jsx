@@ -24,7 +24,7 @@ const AddProduct = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen my-[50px]">
             <div className="flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold mb-8 text-center text-[#5f5c5c]">Add product!!</h1>

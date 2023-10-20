@@ -11,7 +11,7 @@ const Faq = () => {
                     <p className="text-[14px] tracking-widest text-[#BFA37C] mb-[50px] text-center">LIST OF ANSWERS</p>
                 </div>
 
-                <div className="join join-vertical w-[80%]">
+                <div className="join join-vertical w-[80%] rounded-[2px]">
                     <div className="collapse collapse-arrow join-item border border-base-300">
                         <input type="radio" name="my-accordion-4" />
                         <div className="collapse-title text-[#5f5c5c] text-[22px] font-medium">

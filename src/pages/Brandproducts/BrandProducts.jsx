@@ -14,7 +14,7 @@ const BrandProducts = ({ brandName }) => {
 
     return (
 
-        <div className="py-[100px] grid grid-cols-1 gap-5 md:w-[80%] mx-auto">
+        <div className="py-[100px] flex flex-col items-center md:grid grid-cols-1 gap-5 md:w-[80%] mx-auto">
             {
                 specificVehicles.map((vehicle, index) => <BrandProductsCard
                     key={vehicle._id}

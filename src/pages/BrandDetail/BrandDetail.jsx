@@ -26,8 +26,8 @@ const BrandDetail = () => {
                         <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                         <a href="#slide2" className="btn btn-circle bg-[#cbb79a] border-0">❯</a>
                     </div>
-                    <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">{brandName}</h2>
+                    <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">{brandName}</h2>
                         <p className="text-white text-[12px] md:text-xl ml-10">{description}</p>
                         <div className="flex">
                             <a href="#slide3" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>
@@ -41,8 +41,8 @@ const BrandDetail = () => {
                         <a href="#slide1" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                         <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                     </div>
-                    <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">{brandName}</h2>
+                    <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">{brandName}</h2>
                         <p className="text-white text-[12px] md:text-xl ml-10">{description}</p>
                         <div className="flex">
                             <a href="#slide1" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>
@@ -56,8 +56,8 @@ const BrandDetail = () => {
                         <a href="#slide2" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                         <a href="#slide1" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                     </div>
-                    <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">{brandName}</h2>
+                    <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+                        <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">{brandName}</h2>
                         <p className="text-white text-[12px] md:text-xl ml-10">{description}</p>
                         <div className="flex">
                             <a href="#slide2" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>

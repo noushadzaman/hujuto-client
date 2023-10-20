@@ -8,9 +8,11 @@ const Banner = () => {
                     <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                     <a href="#slide2" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
-                <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">Unleash Your Dreams through us.</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Lamborghini is Dual Motor All-Wheel Drive delivers unparalleled range and breathtaking power for an unparalleled driving experience.</p>
+
+                <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Unleash Your Dreams through us.</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Experience the epitome of luxury in every drive. At Elegant Auto Gallery, we curate a collection of the world is most opulent cars, blending sophistication.</p>
                     <div className="flex">
                         <a href="#slide3" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>
                         <a href="#slide2" className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Latest Project</a>
@@ -23,9 +25,9 @@ const Banner = () => {
                     <a href="#slide1" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                     <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
-                <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">Redefining Performance and Precision</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Experience Audi is Dual Motor All-Wheel Drive, offering unmatched range and exhilarating power for the ultimate driving adventure</p>
+                <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Redefining Performance and Precision</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Opulent Motors is your gateway to automotive extravagance. Discover a handpicked selection of high-end, luxurious cars that define refinement and prestige.</p>
                     <div className="flex">
                         <a href="#slide1" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>
                         <a href="#slide3" className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Latest Project</a>
@@ -38,9 +40,9 @@ const Banner = () => {
                     <a href="#slide2" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
                     <a href="#slide1" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
-                <div className="h-full left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold mt-2 md:mt-16 lg:mt-[150px] xl:mt-[350px] ml-10">Discover Diverse Excellence.</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Discover our diverse collection of robust luxury cars, where sophistication meets performance and innovation reigns supreme.</p>
+                <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Discover Diverse Excellence.</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Luxury Auto Elegance offers a world of elite vehicles, meticulously chosen for their craftsmanship and advanced features.</p>
                     <div className="flex">
                         <a href="#slide2" className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</a>
                         <a href="#slide1" className="py-1 btn btn-outline hover:bg-[#ccb89b] hover:border-0 text-[#ccb89b] border-[#ccb89b] rounded-[2px]">Latest Project</a>
