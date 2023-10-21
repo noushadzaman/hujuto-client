@@ -12,7 +12,7 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
     const { imageUrl, name, price, } = singleProduct;
 
     useEffect(() => {
-        fetch('http://localhost:5000/cartProduct')
+        fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct')
             .then(res => res.json())
             .then(data => {
                 setAllCartProducts(data);
@@ -21,7 +21,7 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
 
     const handleDelete = () => {
         const specificProduct = allCartProducts.find(product => product.name == name);
-        fetch(`http://localhost:5000/cartProduct/${specificProduct._id}`, {
+        fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct/${specificProduct._id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -29,7 +29,7 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
                 console.log(data);
                 const remaining = myProductsState.filter(myProductState => myProductState.name !== name);
                 setMyProductsState(remaining);
-                toast.success('Product delete successfully', {
+                toast.success('Product deleted successfully', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,

@@ -9,7 +9,7 @@ const Update = () => {
     const id = _id.id;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/vehicleUpdate/${id}`)
+        fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicleUpdate/${id}`)
             .then(res => res.json())
             .then(data => setDefaultValue(data))
     }, [])
@@ -30,7 +30,7 @@ const Update = () => {
 
         const newProduct = { imageUrl, name, brandName, type, price, rating, shortDescription };
 
-        fetch(`http://localhost:5000/update/${id}`, {
+        fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/update/${id}`, {
             method: "PUT",
             headers: {
                 "Content-type": "Application/json"

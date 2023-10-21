@@ -13,7 +13,7 @@ const ProductDetails = () => {
     const handleAddToCart = () => {
         const userEmail = user.email;
         const cartProduct = { userEmail, name };
-        fetch('http://localhost:5000/cartProduct', {
+        fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

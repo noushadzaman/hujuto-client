@@ -17,7 +17,7 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
             .then(() => {
-                navigate('/');
+                navigate(location.state? location.state : '/');
                 setError('');
                 Swal.fire({
                     position: 'center',

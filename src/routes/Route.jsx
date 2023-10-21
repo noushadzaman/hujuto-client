@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/brandDetail/:id',
                 element: <BrandDetail></BrandDetail>,
-                loader: ({ params }) => fetch(`http://localhost:5173/brandDetail/${params.id}`)
+                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/${params.id}`)
             },
             {
                 path: '/login',
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/vehicle/:id',
                 element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/vehicle/${params.id}`)
+                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicle/${params.id}`)
             },
             {
                 path: '/faq',
@@ -51,17 +51,17 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/cartProduct')
+                loader: () => fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct')
             },
             {
                 path: '/cartProduct/:id',
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/cartProduct/${params.id}`)
+                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct/${params.id}`)
             },
             {
                 path: '/vehicleUpdate/:id',
                 element: <PrivateRoute><Update></Update></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/vehicleUpdate/${params.id}`)
+                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicleUpdate/${params.id}`)
             },
         ]
     },
