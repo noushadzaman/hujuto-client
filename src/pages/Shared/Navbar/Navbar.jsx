@@ -25,7 +25,7 @@ const Navbar = () => {
             </button>
         </NavLink>
 
-        <NavLink to="/myCart">
+        <NavLink to="/cart">
             <button className="button">
                 <span>&nbsp;Cart&nbsp;</span>
                 <span className="hover-text">&nbsp;Cart&nbsp;</span>

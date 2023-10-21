@@ -6,6 +6,7 @@ AOS.init();
 
 const BrandProductsCard = ({ vehicle, index }) => {
     const { _id, brandName, imageUrl, name, price, rating, type, shortDescription } = vehicle;
+    console.log(_id)
 
     return (
         <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl hover:shadow-[#ccb89b] transition-shadow
@@ -25,7 +26,9 @@ const BrandProductsCard = ({ vehicle, index }) => {
                     <Link
                         to={`/vehicle/${_id}`}
                         className="w-full btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px] text-center">MORE DETAILS</Link>
-                    <button className="w-full btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px]">Update</button>
+                    <Link
+                        to={`/vehicleUpdate/${_id}`}
+                        className="w-full text-center btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px]">Update</Link>
                 </div>
             </div>
         </div>
