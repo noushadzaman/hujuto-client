@@ -38,12 +38,14 @@ const Cart = () => {
     }, [allProducts])
 
     return (
-        <div className="my-[150px]">
+        <div className="my-[150px] min-h-[20vh]">
 
             {
                 myProductsState.map(singleProduct => <CartCard
                     key={singleProduct?._id}
                     singleProduct={singleProduct}
+                    setMyProductsState={setMyProductsState}
+                    myProductsState={myProductsState}
                 ></CartCard>)
 
             }

@@ -1,4 +1,4 @@
-
+import Swal from 'sweetalert2'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -41,14 +41,14 @@ const Update = () => {
             .then(data => {
                 console.log(data)
             })
-        // navigate('/');
-        // Swal.fire({
-        //     position: 'center',
-        //     icon: 'success',
-        //     title: 'Product has been added',
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   })
+        navigate('/');
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Product updated successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
 
     return (

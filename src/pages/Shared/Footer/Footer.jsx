@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className="bottom-0">
             <div className="footer items-center py-[100px] md:px-[100px] lg:px-[150px] xl:px-[200px] flex justify-between flex-col md:flex-row bg-[#0c1315] text-base-content">
                 <nav className="flex flex-col items-start">
                     <p className="text-[#ccb89b]  text-3xl tracking-widest">HUJUTO</p>
