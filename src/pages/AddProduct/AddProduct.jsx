@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const AddProduct = () => {
+    const navigate = useNavigate();
     const handleAddProduct = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -21,6 +24,14 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => console.log(data))
+            navigate('/');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Product has been added',
+                showConfirmButton: false,
+                timer: 1500
+              })
     }
 
     return (
@@ -40,14 +51,14 @@ const AddProduct = () => {
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">ImageUrl</span>
                                 </label>
 
-                                <input name="imageUrl" type="text" placeholder="imageUrl" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="imageUrl" type="text" placeholder="imageUrl" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Name</span>
                                 </label>
 
-                                <input name="name" type="text" placeholder="name" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="name" type="text" placeholder="name" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                         </div>
                         <div className="md:flex gap-[40px]">
@@ -56,14 +67,14 @@ const AddProduct = () => {
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Brand Name</span>
                                 </label>
 
-                                <input name="brandName" type="text" placeholder="brand name" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="brandName" type="text" placeholder="brand name" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Type</span>
                                 </label>
 
-                                <input name="type" type="text" placeholder="type" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="type" type="text" placeholder="type" className=" input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                         </div>
                         <div className="md:flex gap-[40px]">
@@ -72,14 +83,14 @@ const AddProduct = () => {
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Price</span>
                                 </label>
 
-                                <input name="price" type="text" placeholder="price" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="price" type="text" placeholder="price" className=" input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Rating</span>
                                 </label>
 
-                                <input name="rating" type="text" placeholder="rating" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
+                                <input name="rating" type="text" placeholder="rating" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[350px]" required />
                             </div>
 
                         </div>
@@ -89,7 +100,7 @@ const AddProduct = () => {
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Short description</span>
                                 </label>
 
-                                <input name="shortDescription" type="text" placeholder="short description" className="bg-base-100 input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]" required />
+                                <input name="shortDescription" type="text" placeholder="short description" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]" required />
                             </div>
                         </div>
                         <div className="form-control mt-6">
