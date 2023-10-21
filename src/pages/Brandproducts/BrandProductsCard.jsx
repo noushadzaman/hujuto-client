@@ -6,7 +6,6 @@ AOS.init();
 
 const BrandProductsCard = ({ vehicle, index }) => {
     const { _id, brandName, imageUrl, name, price, rating, type, shortDescription } = vehicle;
-    console.log(_id)
 
     return (
         <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl hover:shadow-[#ccb89b] transition-shadow

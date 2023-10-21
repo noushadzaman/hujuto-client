@@ -1,8 +1,8 @@
-# React + Vite
+# Hujuto
+#live-link: https://hujuto.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Stores and updates vehicles data in <mark>database</mark>
+* Stores and deletes user data from <mark>database</mark>
+* Email registration, login and google login through <mark>firebase</mark>
+* various <mark>NPM packages</mark> integrated for more human friendly interactions 
+* Desktop and mobile <mark>responsive</mark>
