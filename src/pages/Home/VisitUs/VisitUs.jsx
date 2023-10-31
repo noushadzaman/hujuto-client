@@ -6,7 +6,7 @@ const VisitUs = () => {
             <div className="text-neutral-content">
                 <div className="absolute max-w-lg flex flex-col items-end top-0 right-1/4">
                     <h1 className="mt-[150px] text-white text-[20px] md:text-3xl lg:text-7xl text-right lg:mt-[200px] ml-10 mb-5 tracking-wider">Wanna get a beast instead just a car?</h1>
-                    <button className="btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px]">Visit Us</button>
+                    <button className="btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]">Visit Us</button>
                 </div>
             </div>
         </div>

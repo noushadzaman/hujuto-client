@@ -4,7 +4,7 @@ const CompanyShowcase = () => {
     return (
 
         <div className="container mx-auto mt-[120px] mb-[100px]">
-            <h2 className="text-[26px] md:text-[42px] text-[#0C1315] mb-[15px] text-center uppercase">Our Exclusive Collaborations with the World's <br></br>Premier Car Brands</h2>
+            <h2 className="text-[26px] md:text-[42px] text-[#0C1315] mb-[15px] text-center uppercase">Our Exclusive Collaborations with the World is <br></br>Premier Car Brands</h2>
             <p className="text-[14px] tracking-widest text-[#BFA37C] mb-[50px] text-center">Top Luxury Car Brands</p>
             <div className="py-[50px] image-container">
                 <Marquee gradient={true} pauseOnHover={true}>

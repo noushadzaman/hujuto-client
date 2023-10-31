@@ -25,7 +25,6 @@
 .hover-text {
     position: absolute;
     box-sizing: border-box;
-    content: attr(data-text);
     color: var(--animation-color);
     width: 0%;
     inset: 0;
@@ -37,7 +36,7 @@
 
 .button:hover .hover-text {
     width: 100%;
-    filter: drop-shadow(0 0 23px var(--animation-color))
+    filter: drop-shadow(0 0 23px var(--animation-color));
 }
 
 nav a {
@@ -46,21 +45,23 @@ nav a {
 }
 
 .btn-primary {
-    /* padding: 17px 40px; */
     border: 0;
     border-radius: 2px;
     font-weight: 500;
     color: white;
     background-color: #d6cab8;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-size: 15px;
+    font-weight: 600;
     transition: all .5s ease;
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .btn-primary:hover {
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     background-color: #ccb89b;
     color: hsl(0, 0%, 100%);
     box-shadow: #BFA37C 0px 7px 29px 0px;

@@ -1,5 +1,4 @@
-# Hujuto
-#live-link: https://hujuto.web.app/
+# live-link: https://hujuto.web.app/
 
 * Stores and updates vehicles data in <mark>database</mark>
 * Stores and deletes user data from <mark>database</mark>
