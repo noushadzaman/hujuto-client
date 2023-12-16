@@ -16,7 +16,7 @@ const AddProduct = () => {
         const shortDescription = form.shortDescription.value;
         const newProduct = { imageUrl, name, brandName, type, price, rating, shortDescription };
 
-        fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicle', {
+        fetch('http://localhost:5000/vehicle', {
             method: "POST",
             headers: {
                 "Content-type": "Application/json"

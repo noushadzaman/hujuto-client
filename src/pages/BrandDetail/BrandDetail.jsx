@@ -1,26 +1,39 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BrandProducts from "../Brandproducts/BrandProducts";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../hooks/useAxios";
+import { useState } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const BrandDetail = () => {
-    const [brand, setBrand] = useState([]);
+    const axiosPublic = useAxios();
     const id = useParams();
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
 
-    useEffect(() => {
-        fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app')
-            .then(res => res.json())
-            .then(data => {
-                const brand = data.find(brand => brand._id == id.id);
-                setBrand(brand);
-            })
-    }, [id.id]);
+    const { data, isLoading } = useQuery({
+        queryKey: ['brand', id.id],
+        queryFn: () => axiosPublic(`http://localhost:5000/brand/${id.id}`)
+    })
 
-    const { sliderImage1, sliderImage2, sliderImage3, brandName, description } = brand;
+    if (isLoading) {
+        return <div className="mt-[200px] w-[150px] mx-auto">
+            <MoonLoader
+                color={color}
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
+    }
+
+    const { sliderImage1, sliderImage2, sliderImage3, brandName, description } = data?.data;
 
     return (
         <div>
             <div className="carousel w-full ">
-                <div id="slide1" className="carousel-item relative w-full">
+                <div id="slide1" className="carousel-item relative w-full max-h-[800px]">
                     <img src={`${sliderImage1}`} className="w-full" />
                     <div className="absolute hidden md:flex justify-end md:gap-24 gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0">
                         <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
@@ -35,7 +48,7 @@ const BrandDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div id="slide2" className="carousel-item relative w-full">
+                <div id="slide2" className="carousel-item relative w-full max-h-[800px]">
                     <img src={`${sliderImage2}`} className="w-full" />
                     <div className="absolute hidden  md:flex justify-end md:gap-24 gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0">
                         <a href="#slide1" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>
@@ -50,7 +63,7 @@ const BrandDetail = () => {
                         </div>
                     </div>
                 </div>
-                <div id="slide3" className="carousel-item relative w-full">
+                <div id="slide3" className="carousel-item relative w-full max-h-[800px]">
                     <img src={`${sliderImage3}`} className="w-full" />
                     <div className="absolute hidden  md:flex justify-end md:gap-24 gap-2 transform -translate-y-1/2 left-5 right-5 bottom-0">
                         <a href="#slide2" className="btn btn-circle bg-[#ccb89b] border-0">❮</a>

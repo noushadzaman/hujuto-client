@@ -1,46 +1,98 @@
-import { useEffect, useState } from "react";
 import BrandProductsCard from "./BrandProductsCard";
 import PropTypes from 'prop-types';
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../hooks/useAxios";
+import { useState } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
+
 
 const BrandProducts = ({ brandName }) => {
-    const [allVehicles, setAllVehicles] = useState([]);
-    const [brandVehicles, setBrandVehicles] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxios();
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
+    const [currentPage, setCurrentPage] = useState(0)
 
-    useEffect(() => {
-        fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicle')
-            .then(res => res.json())
-            .then(data => {
-                setAllVehicles(data);
-                setLoading(false);
-            });
-    }, [])
-    useEffect(() => {
-        if (!loading) {
-            const specificVehicles = allVehicles.filter(vehicle => vehicle.brandName == brandName);
-            setBrandVehicles(specificVehicles);
+    const { data: countArray, isLoading: countLoading } = useQuery({
+        queryKey: ['count'],
+        queryFn: async () => {
+            const res = await axiosPublic(`/vehicleCount?brandName=${brandName}`)
+            return res;
+        },
+    })
+
+    const count = countArray.data.length;
+    const itemsPerPage = 6;
+    const numberOfPages = Math.ceil(count / itemsPerPage);
+
+    const { data: vehicles, isLoading } = useQuery({
+        queryKey: ['brand-products', brandName, currentPage],
+        queryFn: async () => {
+            const res = await axiosPublic(`/vehicle?brandName=${brandName}&page=${currentPage}&size=${itemsPerPage}`)
+            return res;
+        },
+    })
+
+
+    // const pages = [];
+    // for (let i = 0; i < numberOfPages; i++) {
+    //     numberOfPages.push(i); 
+    // }
+    const pages = [...Array(numberOfPages).keys()];
+
+    const goToPreviousPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
         }
-    }, [allVehicles])
+    }
+
+    const goToNextPage = () => {
+        if (currentPage < numberOfPages - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    }
+
+    if (isLoading) {
+        return <div className="mt-[200px] w-[150px] mx-auto">
+            <MoonLoader
+                color={color}
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
+    }
 
     return (
-
-        <div className="py-[100px] flex flex-col items-center md:grid grid-cols-1 gap-5 md:w-[80%] mx-auto">
-            {
-                brandVehicles.map((vehicle, index) => <BrandProductsCard
-                    key={vehicle._id}
-                    index={index}
-                    vehicle={vehicle}
-                ></BrandProductsCard>)
-            }
-            {
-                brandVehicles.length == 0 &&
-                <div>
-                    <img className="w-[30%] mx-auto" src="403 Error Forbidden-bro.png" alt="" />
-                    <h2 className="text-center text-[25px] text-[#d6cab8]">Nothing found on specific brand</h2>
-                </div>
-            }
+        <div className="flex items-center flex-col py-[100px]">
+            <div className="pb-[50px] flex flex-col items-center md:grid grid-cols-1 gap-5 md:w-[80%] mx-auto">
+                {
+                    vehicles?.data.map((vehicle, index) => <BrandProductsCard
+                        key={vehicle._id}
+                        index={index}
+                        vehicle={vehicle}
+                    ></BrandProductsCard>)
+                }
+                {
+                    vehicles?.data.length == 0 &&
+                    <div>
+                        <img className="w-[30%] mx-auto" src="Forbidden-bro.png" alt="" />
+                        <h2 className="text-center text-[25px] text-[#d6cab8]">Nothing found on specific brand</h2>
+                    </div>
+                }
+            </div>
+            <div className="pagination">
+                <button onClick={goToPreviousPage} className="btn bg-[#f7f5f2] rounded-[2px] hover:bg-[#d6cab8]">Prev</button>
+                {
+                    pages.map(page => <button
+                        className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px]`}
+                        onClick={() => setCurrentPage(page)}
+                        key={page}
+                    >{page}</button>)
+                }
+                <button onClick={goToNextPage} className="btn bg-[#f7f5f2] rounded-[2px] ml-2 hover:bg-[#d6cab8]">Next</button>
+            </div>
         </div>
-
     );
 };
 

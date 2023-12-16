@@ -7,10 +7,10 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import BrandDetail from "../pages/BrandDetail/BrandDetail";
 import AddProduct from "../pages/AddProduct/AddProduct";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
-import Faq from "../pages/Faq/Faq";
 import PrivateRoute from "./PrivateRoute";
 import Cart from "../pages/Cart/Cart";
 import Update from "../pages/Update/Update";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
     {
@@ -24,8 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brandDetail/:id',
-                element: <BrandDetail></BrandDetail>,
-                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/${params.id}`)
+                element: <BrandDetail></BrandDetail>
             },
             {
                 path: '/login',
@@ -42,16 +41,16 @@ const router = createBrowserRouter([
             {
                 path: '/vehicle/:id',
                 element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicle/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/vehicle/${params.id}`)
             },
             {
-                path: '/faq',
-                element: <Faq></Faq>
+                path: '/contact',
+                element: <Contact></Contact>
             },
             {
                 path: '/cart',
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>,
-                loader: () => fetch('https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct')
+                loader: () => fetch('http://localhost:5000/cartProduct')
             },
             {
                 path: '/cartProduct/:id',

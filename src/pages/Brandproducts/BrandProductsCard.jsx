@@ -5,7 +5,7 @@ import AOS from 'aos';
 AOS.init();
 
 const BrandProductsCard = ({ vehicle, index }) => {
-    const { _id, imageUrl, name, price, rating, type, shortDescription } = vehicle;
+    const { _id, imageUrls, name, price, rating, shortDescription } = vehicle;
 
     return (
         <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] hover:shadow-[#ccb89b] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl transition-shadow
@@ -13,19 +13,16 @@ const BrandProductsCard = ({ vehicle, index }) => {
         `}>
             <div className="rounded-2xl w-[100%] flex items-center flex-col">
                 <div className='absolute top-3'>
-                    <p className="text-[#5f5c5c] text-[40px] lg:text-[50px] font-semibold tracking-wider px-3 text-center opacity-50">{name}</p>
+                    <p className="text-[#5f5c5c] text-[40px] lg:text-[50px] font-semibold tracking-wider px-3 text-center opacity-50 md:whitespace-nowrap">{name}</p>
                 </div>
                 <div data-aos="fade-left" data-aos-duration="1000" className='relative'>
-                    <img className='w-[60%] mx-auto py-[50px]' src={imageUrl} alt="" />
+                    <img className='w-[60%] mx-auto py-[50px]' src={imageUrls[0]} alt="" />
                 </div>
             </div>
             <div className="w-full px-3 pb-4 md:flex gap-3">
                 <div className='space-y-1'>
                     <p className="text-[#ccb89b] text-[18px] font-semibold tracking-wider">Rating: {rating}</p>
                     <p className="text-[#ccb89b] text-[18px] font-semibold tracking-wider">{price}</p>
-                    <div className='py-[2px] px-[4px] bg-[#5f5c5c] rounded-[2px] text-center w-[180px] whitespace-nowrap opacity-70'>
-                        <p className="text-[#ccb89b] text-[18px] font-semibold tracking-wider">Type: <span className=''>{type}</span></p>
-                    </div>
                     <p className="text-[#5f5c5c] opacity-75 text-[14px] pb-[15px] font-[600] tracking-wider">{shortDescription.slice(0, 70) + '...'}.</p>
                 </div>
                 <div className='md:w-[40%] shrink-0 flex gap-5 flex-col'>

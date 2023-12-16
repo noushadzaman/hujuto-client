@@ -21,8 +21,7 @@ const Register = () => {
             return;
         }
         createUser(email, password)
-            .then(user => {
-                console.log(user.user);
+            .then(() => {
                 setNamePhoto(name, photoURL);
                 setError('');
                 navigate('/');
