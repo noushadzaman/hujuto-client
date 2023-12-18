@@ -18,7 +18,10 @@ const ProductDetails = () => {
     const { user } = useContext(AuthContext);
     const userIdentity = user?.email;
     const images = imageUrls.slice(1, imageUrls.length);
-    const { MapLat, MapLon, MarkerLat, MarkerLon, name: locationPlace } = location
+    const { MapLat, MapLon, MarkerLat, MarkerLon, name: locationPlace } = location;
+    console.log(productDetails);
+    console.log(location.ma)
+    console.log(MarkerLat, MarkerLon, MapLat, MapLon);
     const axiosPublic = useAxios()
     const [myProductsState, setMyProductsState] = useState([]);
 
@@ -30,7 +33,7 @@ const ProductDetails = () => {
             return res;
         }
     });
-    console.log(myProductsState)
+    // console.log(myProductsState)
 
     const handleAddToCart = () => {
         const available = myProductsState.find(productState => productState.productId === _id);
@@ -96,9 +99,11 @@ const ProductDetails = () => {
                         <div>
                             <h2 className='md:text-[20px] mb-[30px]'>This car will get imported from: <span className='text-[#404040] text-[20px] md:text-[30px] font-semibold'>{locationPlace}</span></h2>
                         </div>
-                        <Map height={500} defaultCenter={[MapLat, MapLon]} defaultZoom={4}>
-                            <Marker width={60} anchor={[MarkerLat, MarkerLon]} />
-                        </Map>
+                        {
+                            location && <Map height={500} defaultCenter={[MapLat, MapLon]} defaultZoom={6}>
+                                <Marker width={60} anchor={[MarkerLat, MarkerLon]} />
+                            </Map>
+                        }
                     </div>
                 </div>
             </div>

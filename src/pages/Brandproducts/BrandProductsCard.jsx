@@ -6,6 +6,7 @@ AOS.init();
 
 const BrandProductsCard = ({ vehicle, index }) => {
     const { _id, imageUrls, name, price, rating, shortDescription } = vehicle;
+    const direction = 'right';
 
     return (
         <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] hover:shadow-[#ccb89b] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl transition-shadow
@@ -15,11 +16,11 @@ const BrandProductsCard = ({ vehicle, index }) => {
                 <div className='absolute top-3'>
                     <p className="text-[#5f5c5c] text-[40px] lg:text-[50px] font-semibold tracking-wider px-3 text-center opacity-50 md:whitespace-nowrap">{name}</p>
                 </div>
-                <div data-aos="fade-left" data-aos-duration="1000" className='relative'>
+                <div data-aos={`fade-${direction}`} data-aos-duration="1000" className='relative'>
                     <img className='w-[60%] mx-auto py-[50px]' src={imageUrls[0]} alt="" />
                 </div>
             </div>
-            <div className="w-full px-3 pb-4 md:flex gap-3">
+            <div className="w-full px-3 pb-4 md:flex justify-between gap-3">
                 <div className='space-y-1'>
                     <p className="text-[#ccb89b] text-[18px] font-semibold tracking-wider">Rating: {rating}</p>
                     <p className="text-[#ccb89b] text-[18px] font-semibold tracking-wider">{price}</p>

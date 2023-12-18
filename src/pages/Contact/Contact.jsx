@@ -19,14 +19,14 @@ const Contact = () => {
                     title: "Message has been sent",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
                 console.log(result.text);
                 e.target.reset();
             }, (error) => {
                 console.log(error.text);
             });
-
     }
+
 
     return (
         <div>
