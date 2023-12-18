@@ -4,10 +4,13 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import { ToastContainer } from 'react-toastify';
+import MoonLoader from "react-spinners/MoonLoader";
 
 
 const Cart = () => {
-    const axiosPublic = useAxios()
+    const axiosPublic = useAxios();
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
     const { user } = useContext(AuthContext);
     const [myProductsState, setMyProductsState] = useState([]);
     const userIdentity = user.email;
@@ -22,13 +25,19 @@ const Cart = () => {
     })
 
     if (isLoading) {
-        return <progress></progress>
+        <MoonLoader
+        color={color}
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+    />
     }
 
     return (
         <div>
             {
-                myProductsState.length === 0 ?
+                !isLoading && myProductsState.length === 0 ?
                     <div className="flex justify-center pt-[250px] text-[25px] text-[#b09d80]">
                         <p>Nothing added to cart yet</p>
                     </div>

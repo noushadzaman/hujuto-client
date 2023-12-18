@@ -19,6 +19,13 @@ const Navbar = () => {
     }
 
     const navLinks = <>
+        <NavLink to="/cars">
+            <button className="button">
+                <span>&nbsp;cars&nbsp;</span>
+                <span className="hover-text">&nbsp;cars&nbsp;</span>
+            </button>
+        </NavLink>
+
         <NavLink to="/cart">
             <button className="button">
                 <span>&nbsp;Cart&nbsp;</span>
@@ -33,13 +40,6 @@ const Navbar = () => {
             </button>
         </NavLink>
 
-        {/* <NavLink to="/faq">
-            <button className="button">
-                <span>&nbsp;Faq&nbsp;</span>
-                <span className="hover-text">&nbsp;Faq&nbsp;</span>
-            </button>
-        </NavLink> */}
-
         <NavLink to="/contact">
             <button className="button">
                 <span>&nbsp;Contact&nbsp;</span>
@@ -47,7 +47,7 @@ const Navbar = () => {
             </button>
         </NavLink>
     </>
-    
+
     return (
         <nav className="navbar bg-base-100">
             <div className="navbar-start">

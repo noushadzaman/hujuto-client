@@ -5,9 +5,13 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../../hooks/useAxios';
+import MoonLoader from "react-spinners/MoonLoader";
+import { useState } from 'react';
 
 const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
     const axiosPublic = useAxios();
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
     const { productId, _id } = singleProduct;
 
     const { data, isLoading } = useQuery({
@@ -19,7 +23,17 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
     })
 
     if (isLoading) {
-        return <progress></progress>
+        return (
+            <div className='flex justify-center'>
+                <MoonLoader
+                    color={color}
+                    loading={loading}
+                    size={50}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+        )
     }
     const { imageUrls, name, price, _id: id } = data?.data;
 

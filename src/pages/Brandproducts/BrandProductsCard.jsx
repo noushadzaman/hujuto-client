@@ -35,8 +35,6 @@ const BrandProductsCard = ({ vehicle, index }) => {
                 </div>
             </div>
         </div>
-
-
     );
 };
 

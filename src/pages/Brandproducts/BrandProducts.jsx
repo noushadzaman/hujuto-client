@@ -13,23 +13,26 @@ const BrandProducts = ({ brandName }) => {
     const [currentPage, setCurrentPage] = useState(0)
 
     const { data: countArray, isLoading: countLoading } = useQuery({
-        queryKey: ['count'],
+        queryKey: ['count', brandName],
         queryFn: async () => {
             const res = await axiosPublic(`/vehicleCount?brandName=${brandName}`)
             return res;
         },
     })
+    console.log(countArray?.data?.length)
 
-    const count = countArray.data.length;
+    const count = countArray?.data?.length;
+
     const itemsPerPage = 6;
     const numberOfPages = Math.ceil(count / itemsPerPage);
 
     const { data: vehicles, isLoading } = useQuery({
-        queryKey: ['brand-products', brandName, currentPage],
+        queryKey: ['brand-products', brandName, currentPage, itemsPerPage],
         queryFn: async () => {
             const res = await axiosPublic(`/vehicle?brandName=${brandName}&page=${currentPage}&size=${itemsPerPage}`)
             return res;
         },
+        enabled: !countLoading,
     })
 
 
@@ -37,6 +40,17 @@ const BrandProducts = ({ brandName }) => {
     // for (let i = 0; i < numberOfPages; i++) {
     //     numberOfPages.push(i); 
     // }
+    if (isLoading || countLoading) {
+        return <div className="my-[200px] w-[150px] mx-auto">
+            <MoonLoader
+                color={color}
+                loading={loading}
+                size={150} 
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
+    }
     const pages = [...Array(numberOfPages).keys()];
 
     const goToPreviousPage = () => {
@@ -51,17 +65,6 @@ const BrandProducts = ({ brandName }) => {
         }
     }
 
-    if (isLoading) {
-        return <div className="mt-[200px] w-[150px] mx-auto">
-            <MoonLoader
-                color={color}
-                loading={loading}
-                size={150}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-            />
-        </div>
-    }
 
     return (
         <div className="flex items-center flex-col py-[100px]">

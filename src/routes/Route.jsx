@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Cart from "../pages/Cart/Cart";
 import Update from "../pages/Update/Update";
 import Contact from "../pages/Contact/Contact";
+import Car from "../pages/Car/Car";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/addProduct',
                 element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+            },
+            {
+                path: '/cars',
+                element: <Car></Car>
             },
             {
                 path: '/vehicle/:id',
