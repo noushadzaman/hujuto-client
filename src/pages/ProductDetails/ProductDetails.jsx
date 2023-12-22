@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
     const productDetails = useLoaderData();
-    const { _id, imageUrls, name, price, rating, shortDescription, location } = productDetails;
+    const { _id, imageUrls,  name, price, rating, shortDescription, location } = productDetails;
     const { user } = useContext(AuthContext);
     const userIdentity = user?.email;
     const images = imageUrls.slice(1, imageUrls.length);

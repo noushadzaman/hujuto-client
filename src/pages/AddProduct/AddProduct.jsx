@@ -2,17 +2,23 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form"
 import useAxios from "../../hooks/useAxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { MoonLoader } from "react-spinners";
 
 const imageApiKey = import.meta.env.VITE_image_api_key;
+const apiKey = import.meta.env.VITE_Opencage_location_api;
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
 
 
 const AddProduct = () => {
     const axiosPublic = useAxios();
     const [imagesNumber, setImagesNumber] = useState([1]);
-    const [exportLocation, setExportLocation] = useState('');
+    const [submissionLoading, setSubmissionLoading] = useState(false);
+
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#ffff");
     const navigate = useNavigate();
     const {
         register,
@@ -21,51 +27,35 @@ const AddProduct = () => {
         formState: { errors },
     } = useForm();
 
-    // const handleAddProduct = (event) => {
-    //     event.preventDefault();
-    //     const form = event.target;
-    //     const imageUrl = form.imageUrl.value;
-    //     const name = form.name.value;
-    //     const brandName = form.brandName.value;
-    //     const type = form.type.value;
-    //     const price = form.price.value;
-    //     const rating = form.rating.value;
-    //     const shortDescription = form.shortDescription.value;
-    //     const newProduct = { imageUrl, name, brandName, type, price, rating, shortDescription };
+    const { data, isLoading } = useQuery({
+        queryKey: ['brands'],
+        queryFn: () => axios.get('http://localhost:5000/brand')
+    })
 
-    //     fetch('http://localhost:5000/vehicle', {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-type": "Application/json"
-    //         },
-    //         body: JSON.stringify(newProduct)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    //     navigate('/');
-    //     Swal.fire({
-    //         position: 'center',
-    //         icon: 'success',
-    //         title: 'Product has been added',
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //     })
-    // }
+    if (isLoading) {
+        return (
+            <div className='flex justify-center'>
+                <MoonLoader
+                    color={color}
+                    loading={loading}
+                    size={10}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+        )
+    }
 
+    console.log(data.data)
     const handleIncreaseInput = () => {
         if (imagesNumber.length < 8) {
             setImagesNumber([...imagesNumber, 1])
         }
     }
 
-    const address = 'Dhaka';
-    const apiKey = 'd49bd9431595486a8ce5aa0d14e106e5';
-
-
-
-
 
     const onSubmit = async (form) => {
+        setSubmissionLoading(true)
         let newVehicle;
         let imageUrls = [];
         const name = form.name;
@@ -104,7 +94,7 @@ const AddProduct = () => {
             let markerLon;
             let mapLat;
             let mapLon;
-            const exportCountry = form.exportLocation;
+            const exportCountry = form.exportCountry;
             const geocodingUrlForCountry = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(exportCountry)}&key=${apiKey}`;
             axios.get(geocodingUrlForCountry)
                 .then(response => {
@@ -124,7 +114,7 @@ const AddProduct = () => {
                                     markerLat = location.lat;
                                     markerLon = location.lng;
                                     const locationObj = {
-                                        name: exportLocation,
+                                        name: exportCountry+', '+exportLocation,
                                         MarkerLat: markerLat,
                                         MarkerLon: markerLon,
                                         MapLat: mapLat,
@@ -141,7 +131,8 @@ const AddProduct = () => {
                                     })
                                         .then(res => res.json())
                                         .then(data => console.log(data))
-                                    // navigate('/');
+                                    setSubmissionLoading(false)
+                                    navigate('/');
                                     Swal.fire({
                                         position: 'center',
                                         icon: 'success',
@@ -176,31 +167,6 @@ const AddProduct = () => {
         }
     }
 
-    // const locationObj = {
-    //     name: exportLocation,
-    //     markerLat: markerLat,
-    //     markerLon: markerLon,
-    // }
-
-    // newVehicle = { name, brandName, location: locationObj, type, price, rating, shortDescription, imageUrls, direction };
-    //                     console.log(newVehicle);
-    //                     fetch('http://localhost:5000/vehicle', {
-    //                         method: "POST",
-    //                         headers: {
-    //                             "Content-type": "Application/json"
-    //                         },
-    //                         body: JSON.stringify(newVehicle)
-    //                     })
-    //                         .then(res => res.json())
-    //                         .then(data => console.log(data))
-    //                     // navigate('/');
-    //                     Swal.fire({
-    //                         position: 'center',
-    //                         icon: 'success',
-    //                         title: 'Product has been added',
-    //                         showConfirmButton: false,
-    //                         timer: 1500
-    // })
 
     return (
         <div className=" min-h-screen my-[50px] md:w-[60%] lg:w-[70%] mx-auto">
@@ -228,10 +194,12 @@ const AddProduct = () => {
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Brand Name</span>
                                 </label>
-                                <input
-                                    {...register("brandName", { required: true })}
-                                    type="text" placeholder="brand name" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
-                                />
+                                <select {...register("brandName", { required: true })}
+                                    className="select rounded-[2px] w-full max-w-xs placeholder-[#BFA37C]  select-bordered border-[#d6cab8]">
+                                    {
+                                        data?.data?.map(d => <option key={d._id}>{d.brandName}</option>)
+                                    }
+                                </select>
                             </div>
                             <div className="form-control w-full">
                                 <label className="label">
@@ -279,7 +247,6 @@ const AddProduct = () => {
                             </label>
                             <select {...register("direction", { required: true })}
                                 className="select select-sm rounded-[2px] w-full max-w-xs placeholder-[#BFA37C]  select-bordered border-[#d6cab8]">
-                                <option disabled selected>The car in thumbnail is directed to:</option>
                                 <option value="right">Right</option>
                                 <option value="left">Left</option>
                             </select>
@@ -324,7 +291,20 @@ const AddProduct = () => {
                                 type="area" placeholder="Country Location" className="input rounded-[1px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]" />
                         </div>
                         <div className="form-control mt-6">
-                            <input type="submit" value="Add product" className="btn btn-primary" />
+                            {/* <input type="submit" value="Add product" className="btn btn-primary" /> */}
+                            <button type="submit" className="btn-primary flex items-center justify-center btn h-[65px]">
+                                {
+                                    submissionLoading ?
+                                        <MoonLoader
+                                            color={color}
+                                            loading={loading}
+                                            size={50}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        /> :
+                                        "Add Vehicle"
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>

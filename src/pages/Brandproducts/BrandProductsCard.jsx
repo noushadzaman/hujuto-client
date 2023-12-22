@@ -2,11 +2,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
-AOS.init();
+AOS.init({
+    delay: 300,
+    duration: 400, 
+    once: false,
+    throttleDelay: 500,
+});
 
 const BrandProductsCard = ({ vehicle, index }) => {
-    const { _id, imageUrls, name, price, rating, shortDescription } = vehicle;
-    const direction = 'right';
+    const { _id, imageUrls, direction, name, price, rating, shortDescription } = vehicle;
 
     return (
         <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] hover:shadow-[#ccb89b] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl transition-shadow

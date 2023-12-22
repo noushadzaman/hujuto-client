@@ -64,8 +64,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/vehicleUpdate/:id',
-                element: <PrivateRoute><Update></Update></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/vehicleUpdate/${params.id}`)
+                element: <PrivateRoute><Update></Update></PrivateRoute>
             },
         ]
     },
