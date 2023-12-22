@@ -12,6 +12,7 @@ import Cart from "../pages/Cart/Cart";
 import Update from "../pages/Update/Update";
 import Contact from "../pages/Contact/Contact";
 import Car from "../pages/Car/Car";
+import Order from "../pages/Order/Order";
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: '/vehicleUpdate/:id',
                 element: <PrivateRoute><Update></Update></PrivateRoute>
+            },
+            {
+                path: '/order/:id',
+                element: <PrivateRoute><Order></Order></PrivateRoute>
             },
         ]
     },

@@ -114,7 +114,7 @@ const AddProduct = () => {
                                     markerLat = location.lat;
                                     markerLon = location.lng;
                                     const locationObj = {
-                                        name: exportCountry+', '+exportLocation,
+                                        name: `${exportCountry}, ${exportLocation}`,
                                         MarkerLat: markerLat,
                                         MarkerLon: markerLon,
                                         MapLat: mapLat,

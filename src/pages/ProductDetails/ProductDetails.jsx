@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from '../../provider/AuthProvider';
 import { Carousel } from 'react-responsive-carousel';
@@ -14,14 +14,11 @@ import Swal from 'sweetalert2';
 
 const ProductDetails = () => {
     const productDetails = useLoaderData();
-    const { _id, imageUrls,  name, price, rating, shortDescription, location } = productDetails;
+    const { _id, imageUrls, name, price, rating, shortDescription, availability, location } = productDetails;
     const { user } = useContext(AuthContext);
     const userIdentity = user?.email;
     const images = imageUrls.slice(1, imageUrls.length);
     const { MapLat, MapLon, MarkerLat, MarkerLon, name: locationPlace } = location;
-    console.log(productDetails);
-    console.log(location.ma)
-    console.log(MarkerLat, MarkerLon, MapLat, MapLon);
     const axiosPublic = useAxios()
     const [myProductsState, setMyProductsState] = useState([]);
 
@@ -84,27 +81,32 @@ const ProductDetails = () => {
                         </div>)
                     }
                 </Carousel>
-                <div className=''>
-                    <div className="px-[10%] py-[50px] text-[#404040] space-y-3">
-                        <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}</p>
-                        <p className="text-body  md:text-[20px]">{shortDescription}</p>
-                        <p className="text-body  md:text-[20px]">Rating: {rating}</p>
-                        <p className="text-body  md:text-[20px]">Price: {price}</p>
+                <div className="px-[10%] py-[50px] text-[#404040] space-y-3">
+                    <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}<span className='md:text-[20px] ml-5 text-[#404040]'>{!availability && "(Not available right now)"}</span></p>
+                    <p className="text-body  md:text-[20px]">{shortDescription}</p>
+                    <p className="text-body  md:text-[20px]">Rating: {rating}</p>
+                    <p className="text-body  md:text-[20px]">Price: {price}</p>
+                    <div className='flex gap-2 '>
                         <button
                             onClick={handleAddToCart}
                             className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5"
-                        >Add to cart<span className='text-[20px]'><BsFillCartPlusFill /></span></button>
-                    </div>
-                    <div>
-                        <div>
-                            <h2 className='md:text-[20px] mb-[30px]'>This car will get imported from: <span className='text-[#404040] text-[20px] md:text-[30px] font-semibold'>{locationPlace}</span></h2>
-                        </div>
+                        >Add to cart<span className='text-[20px]'><BsFillCartPlusFill /></span>
+                        </button>
                         {
-                            location && <Map height={500} defaultCenter={[MapLat, MapLon]} defaultZoom={6}>
-                                <Marker width={60} anchor={[MarkerLat, MarkerLon]} />
-                            </Map>
+                            availability &&
+                            <Link className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5" to={`/order/${_id}`}> Order</Link>
                         }
                     </div>
+                </div>
+                <div>
+                    <div>
+                        <h2 className='md:text-[20px] mb-[30px]'>This car will get imported from: <span className='text-[#404040] text-[20px] md:text-[30px] font-semibold'>{locationPlace}</span></h2>
+                    </div>
+                    {
+                        location && <Map height={500} defaultCenter={[MapLat, MapLon]} defaultZoom={6}>
+                            <Marker width={60} anchor={[MarkerLat, MarkerLon]} />
+                        </Map>
+                    }
                 </div>
             </div>
             <ToastContainer />
