@@ -36,10 +36,6 @@ const BrandProducts = ({ brandName }) => {
     })
 
 
-    // const pages = [];
-    // for (let i = 0; i < numberOfPages; i++) {
-    //     numberOfPages.push(i); 
-    // }
     if (isLoading || countLoading) {
         return <div className="my-[200px] w-[150px] mx-auto">
             <MoonLoader

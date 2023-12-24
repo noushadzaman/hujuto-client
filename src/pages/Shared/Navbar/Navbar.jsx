@@ -2,11 +2,26 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../../../../public/logo.png'
 import './Navbar.css';
 import { useContext } from "react";
+import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from 'sweetalert2'
+import useAxios from '../../../hooks/useAxios'
 
 const Navbar = () => {
     const { user, loading, logOut } = useContext(AuthContext);
+    const axiosPublic = useAxios();
+    const email = user?.email;
+
+    const { data, isLoading } = useQuery({
+        queryKey: [user?.email],
+        queryFn: () => axiosPublic(`/user?email=${email}`)
+    })
+
+    if (isLoading) {
+        return <progress></progress>
+    }
+    const isAdmin = data?.data[0]?.role;
+
     const handleLogOut = () => {
         logOut();
         Swal.fire({
@@ -26,33 +41,44 @@ const Navbar = () => {
             </button>
         </NavLink>
 
-        <NavLink to="/cart">
-            <button className="button">
-                <span>&nbsp;Cart&nbsp;</span>
-                <span className="hover-text">&nbsp;Cart&nbsp;</span>
-            </button>
-        </NavLink>
+        {
+            isAdmin === 'customer' &&
+            <NavLink to="/cart">
+                <button className="button">
+                    <span>&nbsp;Cart&nbsp;</span>
+                    <span className="hover-text">&nbsp;Cart&nbsp;</span>
+                </button>
+            </NavLink>
+        }
 
-        <NavLink to="/dashboard">
-            <button className="button">
-                <span>&nbsp;dashboard&nbsp;</span>
-                <span className="hover-text">&nbsp;dashboard&nbsp;</span>
-            </button>
-        </NavLink>
+        {
+            isAdmin === 'admin' &&
+            <NavLink to="/dashboard">
+                <button className="button">
+                    <span>&nbsp;dashboard&nbsp;</span>
+                    <span className="hover-text">&nbsp;dashboard&nbsp;</span>
+                </button>
+            </NavLink>
+        }
 
-        <NavLink to="/addProduct">
-            <button className="button">
-                <span>&nbsp;Add&nbsp;vehicle&nbsp;</span>
-                <span className="hover-text">&nbsp;Add&nbsp;vehicle&nbsp;</span>
-            </button>
-        </NavLink>
-
-        <NavLink to="/contact">
-            <button className="button">
-                <span>&nbsp;Contact&nbsp;</span>
-                <span className="hover-text">&nbsp;Contact&nbsp;</span>
-            </button>
-        </NavLink>
+        {
+            isAdmin === 'admin' &&
+            <NavLink to="/addProduct">
+                <button className="button">
+                    <span>&nbsp;Add&nbsp;vehicle&nbsp;</span>
+                    <span className="hover-text">&nbsp;Add&nbsp;vehicle&nbsp;</span>
+                </button>
+            </NavLink>
+        }
+        {
+            !isAdmin === 'admin' &&
+            <NavLink to="/contact">
+                <button className="button">
+                    <span>&nbsp;Contact&nbsp;</span>
+                    <span className="hover-text">&nbsp;Contact&nbsp;</span>
+                </button>
+            </NavLink>
+        }
     </>
 
     return (

@@ -3,38 +3,70 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2'
+import useAxios from '../../hooks/useAxios';
+import { useForm } from "react-hook-form"
+
+const imageApiKey = import.meta.env.VITE_image_api_key;
+const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
 
 const Register = () => {
+    const axiosPublic = useAxios();
     const [error, setError] = useState('');
     const { googleSignIn, createUser, setNamePhoto } = useContext(AuthContext);
     const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
 
-    const handleCreateUser = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const photoURL = form.PhotoUrl.value;
-        const email = form.email.value;
-        const password = form.password.value;
+    const onSubmit = async (form) => {
+        const name = form.name;
+        const email = form.email;
+        const password = form.password;
+        const photo = form.photo;
         if (!/^(?=.*[A-Z])(?=.*[@#$%^&+=!]).{6,}$/.test(password)) {
             setError('Password should have at least 6 character, a capital letter and one special character.')
             return;
         }
-        createUser(email, password)
-            .then(() => {
-                setNamePhoto(name, photoURL);
-                setError('');
-                navigate('/');
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Registered successfully',
-                    showConfirmButton: false,
-                    timer: 2500
-                })
-            })
-            .catch(error => {
-                setError(error.message);
+        axiosPublic.post(imageHostingUrl, { image: photo[0] }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(res => {
+                console.log(res)
+                const photoUrl = res.data.data.display_url;
+
+
+                createUser(email, password)
+                    .then((res) => {
+                        console.log(res)
+                        setNamePhoto(name, photoUrl);
+                        setError('');
+                        const user = {
+                            name,
+                            email,
+                            photoUrl,
+                            role: 'customer'
+                        }
+                        axiosPublic.post(`/users`, user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
+                        navigate('/');
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Registered successfully',
+                            showConfirmButton: false,
+                            timer: 2500
+                        })
+                    })
+                    .catch(error => {
+                        setError(error.message);
+                    })
             })
     }
 
@@ -63,37 +95,49 @@ const Register = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full rounded-[2px] max-w-sm shadow-2xl bg-base-100">
                     <div className='card-body'>
-                        <form onSubmit={handleCreateUser}>
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                        >
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Name</span>
                                 </label>
-                                <input name='name' type="text" placeholder="name"
-                                    className="rounded-[2px] input border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">PhotoUrl</span>
-                                </label>
-                                <input name='PhotoUrl' type="text" placeholder="photourl"
-                                    className=" file:bg-violet-50 rounded-[2px] input border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
+                                <input
+                                    {...register("name", { required: true })}
+                                    type="text" placeholder="name" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
+                                />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Email</span>
                                 </label>
-                                <input name='email' type="email" placeholder="email"
-                                    className="rounded-[2px] input border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
+                                <input
+                                    {...register("email", { required: true })}
+                                    type="email" placeholder="email"
+                                    className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
+                                />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-xl text-[#BFA37C] font-semibold">Password</span>
                                 </label>
-                                <input name='password' type="password" placeholder="password"
-                                    className="rounded-[2px] input border-t-1 border-[#d6cab8] placeholder-[#d6cab8]" required />
-                                <p className="text-[#e96969] font-semibold mt-2 text-[14px]">{error}</p>
-                                <Link to="/login" className="text-[#BFA37C] mt-2 text-[14px] tracking-widest">Already have an account? Login here!</Link>
+                                <input
+                                    {...register("password", { required: true })}
+                                    type="password" placeholder="password"
+                                    className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
+                                />
                             </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text text-xl text-[#BFA37C] font-semibold">Profile picture</span>
+                                </label>
+                                <input
+                                    {...register("photo", { required: true })}
+                                    type="file" className="input rounded-[2px] border-t-1  placeholder-[#d6cab8] input-bordered w-[100%] file-input file-input-ghost max-w-[100%] border-[#d6cab8]"
+                                />
+                            </div>
+                            <p className="text-[#e96969] font-semibold mt-2 text-[14px]">{error}</p>
+                            <Link to="/login" className="text-[#BFA37C] mt-2 text-[14px] tracking-widest">Already have an account? Login here!</Link>
                             <div className="form-control mt-6">
                                 <input type='submit' value="Register" className="btn btn-primary" />
                             </div>

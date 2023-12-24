@@ -31,6 +31,17 @@ const ProductDetails = () => {
         }
     });
 
+    const { data: roleData, isLoading: roleLoading } = useQuery({
+        queryKey: [user?.email],
+        queryFn: () => axiosPublic(`/user?email=${userIdentity}`)
+    })
+
+    if (roleLoading || isLoading) {
+        return <progress></progress>
+    }
+    const role = roleData?.data[0]?.role;
+    console.log(role)
+
     const handleAddToCart = () => {
         const available = myProductsState.find(productState => productState.productId === _id);
         if (available) {
@@ -84,17 +95,20 @@ const ProductDetails = () => {
                     <p className="text-body  md:text-[20px]">{shortDescription}</p>
                     <p className="text-body  md:text-[20px]">Rating: {rating}</p>
                     <p className="text-body  md:text-[20px]">Price: {price}</p>
-                    <div className='flex gap-2 '>
-                        <button
-                            onClick={handleAddToCart}
-                            className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5"
-                        >Add to cart<span className='text-[20px]'><BsFillCartPlusFill /></span>
-                        </button>
-                        {
-                            availability &&
-                            <Link className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5" to={`/order/${_id}`}> Order</Link>
-                        }
-                    </div>
+                    {
+                        role === 'customer' &&
+                        <div className='flex gap-2 '>
+                            <button
+                                onClick={handleAddToCart}
+                                className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5"
+                            >Add to cart<span className='text-[20px]' ><BsFillCartPlusFill /></span></button>
+                            {
+                                availability &&
+                                <Link className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5" to={`/order/${_id}`}
+                                > Order</Link>
+                            }
+                        </div>
+                    }
                 </div>
                 <div>
                     <div>

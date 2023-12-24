@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form"
 import useAxios from "../../hooks/useAxios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
 
 const imageApiKey = import.meta.env.VITE_image_api_key;
-const apiKey = import.meta.env.VITE_Opencage_location_api;
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
+const apiKey = import.meta.env.VITE_Opencage_location_api;
 
 
 const AddProduct = () => {
@@ -290,7 +290,6 @@ const AddProduct = () => {
                                 type="area" placeholder="Country Location" className="input rounded-[1px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]" />
                         </div>
                         <div className="form-control mt-6">
-                            {/* <input type="submit" value="Add product" className="btn btn-primary" /> */}
                             <button type="submit" className="btn-primary flex items-center justify-center btn h-[65px]">
                                 {
                                     submissionLoading ?
