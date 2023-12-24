@@ -33,6 +33,13 @@ const Navbar = () => {
             </button>
         </NavLink>
 
+        <NavLink to="/dashboard">
+            <button className="button">
+                <span>&nbsp;dashboard&nbsp;</span>
+                <span className="hover-text">&nbsp;dashboard&nbsp;</span>
+            </button>
+        </NavLink>
+
         <NavLink to="/addProduct">
             <button className="button">
                 <span>&nbsp;Add&nbsp;vehicle&nbsp;</span>

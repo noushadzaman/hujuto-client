@@ -30,7 +30,6 @@ const ProductDetails = () => {
             return res;
         }
     });
-    // console.log(myProductsState)
 
     const handleAddToCart = () => {
         const available = myProductsState.find(productState => productState.productId === _id);
@@ -55,8 +54,7 @@ const ProductDetails = () => {
             body: JSON.stringify(cartProduct)
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(() => {
                 toast.success('Item added to cart successfully', {
                     position: "top-right",
                     autoClose: 5000,

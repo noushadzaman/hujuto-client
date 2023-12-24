@@ -3,10 +3,13 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const apiKey = import.meta.env.VITE_Opencage_location_api;
 
 const Order = () => {
+    const { user } = useContext(AuthContext);
     const id = useParams();
     const navigate = useNavigate();
     const { data, isLoading } = useQuery({
@@ -35,8 +38,13 @@ const Order = () => {
                 locationData = res.data.results[0].geometry;
                 const orderInfo = {
                     productId: _id,
+                    buyerName: user.displayName,
+                    buyerEmail: user.email,
+                    buyerPhoto: user.photoURL,
+                    vehicleName: name,
                     creditCard,
                     quantity,
+                    locationName: location,
                     location: locationData
                 }
                 axios.post(`http://localhost:5000/order`, orderInfo)
@@ -56,7 +64,7 @@ const Order = () => {
                     icon: "error",
                     title: "Order not sent",
                     text: "Please provide a valid location"
-                  });
+                });
             })
     }
 
@@ -94,7 +102,7 @@ const Order = () => {
                     </label>
                     <input
                         {...register("location", { required: true })}
-                        type="text" placeholder="location" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
+                        type="text" placeholder="your location" className="input rounded-[2px] border-t-1 border-[#d6cab8] placeholder-[#d6cab8] input-bordered w-[100%]"
                     />
                 </div>
                 <button type="submit" className="btn-primary w-[100%] flex items-center justify-center btn h-[65px] mt-[30px]">Order</button>

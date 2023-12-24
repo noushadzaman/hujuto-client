@@ -62,7 +62,9 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
     return (
         <div className="flex flex-col md:flex-row border-[#d6cab8] items-center justify-center md:justify-between border p-1 rounded-[2px] md:gap-10 mb-[30px] w-[75%] mx-auto">
             <div className="flex items-center md:gap-10 justify-center flex-col md:flex-row">
-                <img className="w-[100px] bg-[#d6cab8] rounded-[2px] p-3" src={imageUrls[0]} alt="" />
+                {
+                    imageUrls && <img className="w-[100px] bg-[#d6cab8] rounded-[2px] p-3" src={imageUrls[0]} alt="" />
+                }
                 <div>
                     <p className="text-[#5f5c5c] font-semibold">{name}</p>
                     <p className="text-[#d6cab8] font-semibold">$ {price}</p>

@@ -13,6 +13,7 @@ import Update from "../pages/Update/Update";
 import Contact from "../pages/Contact/Contact";
 import Car from "../pages/Car/Car";
 import Order from "../pages/Order/Order";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: '/order/:id',
                 element: <PrivateRoute><Order></Order></PrivateRoute>
+            },
+            {
+                path: '/dashboard',
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
             },
         ]
     },

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 const VisitUs = () => {
     return (
@@ -6,7 +7,7 @@ const VisitUs = () => {
             <div className="text-neutral-content">
                 <div className="absolute max-w-lg flex flex-col items-end top-0 right-1/4">
                     <h1 className="mt-[150px] text-white text-[20px] md:text-3xl lg:text-7xl text-right lg:mt-[200px] ml-10 mb-5 tracking-wider">Wanna get a beast instead just a car?</h1>
-                    <button className="btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]">Visit Us</button>
+                    <Link to={`/contact`} className="btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px] text-center pt-[7px] md:p-[15px]">Visit Us</Link>
                 </div>
             </div>
         </div>

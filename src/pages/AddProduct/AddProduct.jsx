@@ -46,7 +46,6 @@ const AddProduct = () => {
         )
     }
 
-    console.log(data.data)
     const handleIncreaseInput = () => {
         if (imagesNumber.length < 8) {
             setImagesNumber([...imagesNumber, 1])
@@ -172,7 +171,7 @@ const AddProduct = () => {
         <div className=" min-h-screen my-[50px] md:w-[60%] lg:w-[70%] mx-auto">
             <div className="flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold mb-8 text-center text-[#5f5c5c]">Add product!!</h1>
+                    <h1 className="text-5xl font-bold mb-8 text-center text-[#5f5c5c]">Add Vehicle!!</h1>
                 </div>
                 <div className="card rounded-[2px] flex-shrink-0 shadow-2xl">
                     <form
