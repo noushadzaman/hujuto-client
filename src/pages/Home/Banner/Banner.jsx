@@ -12,11 +12,11 @@ const Banner = () => {
 
                 <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
 
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Unleash Your Dreams through us.</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Experience the epitome of luxury in every drive. At Elegant Auto Gallery, we curate a collection of the world is most opulent cars, blending sophistication.</p>
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Global Auto Import Hub.</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Experience hassle-free international car importing with our expert team. From acquisition to delivery, we ensure a seamless process, making your dream car journey effortless and stress-free.</p>
                     <div className="flex">
-                        <Link to='/login' className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</Link>
-                        <Link to='/login' className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Latest Project</Link>
+                        <Link to='/cars' className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10 hover:text-[#ccb89b] hover:bg-[white]">Discover More</Link>
+                        <Link to='/login' className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Explore Us</Link>
                     </div>
                 </div>
             </div>
@@ -27,11 +27,11 @@ const Banner = () => {
                     <a href="#slide3" className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
                 <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Redefining Performance and Precision</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Opulent Motors is your gateway to automotive extravagance. Discover a handpicked selection of high-end, luxurious cars that define refinement and prestige.</p>
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Seamless Worldwide Car Imports</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Unlock the world of automotive possibilities with our comprehensive import services. Trust in our expertise for a secure and efficient process, ensuring your desired car arrives smoothly from anywhere globally.</p>
                     <div className="flex">
-                        <Link className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</Link>
-                        <Link className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Latest Project</Link>
+                        <Link to={'/cars'} className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10 hover:text-[#ccb89b] hover:bg-[white]">Discover More</Link>
+                        <Link to='/login' className="py-1 btn btn-outline hover:bg-[#ccb89b] text-[#ccb89b] border-[#ccb89b] hover:border-0 rounded-[2px]">Explore Us</Link>
                     </div>
                 </div>
             </div>
@@ -42,11 +42,11 @@ const Banner = () => {
                     <a href="#slide1" to='/login' className="btn btn-circle bg-[#ccb89b] border-0">❯</a>
                 </div>
                 <div className="h-full flex flex-col justify-center left-0 top-0 absolute space-y-3 md:space-y-5  w-full md:w-1/2 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
-                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Discover Diverse Excellence.</h2>
-                    <p className="text-white text-[12px] md:text-xl ml-10">Luxury Auto Elegance offers a world of elite vehicles, meticulously chosen for their craftsmanship and advanced features.</p>
+                    <h2 className="text-white text-[20px] md:text-3xl lg:text-7xl font-semibold ml-10">Drive Across Borders Today</h2>
+                    <p className="text-white text-[12px] md:text-xl ml-10">Navigate the global auto market effortlessly with our dedicated team. Our streamlined import solutions and expert guidance ensure a smooth journey for your dream car, from anywhere to your doorstep.</p>
                     <div className="flex">
-                        <Link className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10">Discover More</Link>
-                        <Link className="py-1 btn btn-outline hover:bg-[#ccb89b] hover:border-0 text-[#ccb89b] border-[#ccb89b] rounded-[2px]">Latest Project</Link>
+                        <Link to={'/cars'} className="py-1 btn bg-[#ccb89b] border-0 rounded-[2px] mr-5 text-white ml-10 hover:text-[#ccb89b] hover:bg-[white]">Discover More</Link>
+                        <Link to='/login' className="py-1 btn btn-outline hover:bg-[#ccb89b] hover:border-0 text-[#ccb89b] border-[#ccb89b] rounded-[2px]">Explore Us</Link>
                     </div>
                 </div>
             </div>
