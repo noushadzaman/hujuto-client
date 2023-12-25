@@ -5,16 +5,20 @@ import { useForm } from "react-hook-form"
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxios from "../../hooks/useAxios";
 
 const apiKey = import.meta.env.VITE_Opencage_location_api;
 
 const Order = () => {
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxios();
     const { user } = useContext(AuthContext);
     const id = useParams();
     const navigate = useNavigate();
     const { data, isLoading } = useQuery({
         queryKey: ['vehicle'],
-        queryFn: () => axios.get(`http://localhost:5000/vehicle/${id.id}`)
+        queryFn: () => axiosPublic.get(`/vehicle/${id.id}`)
     })
     const {
         register,
@@ -47,7 +51,7 @@ const Order = () => {
                     locationName: location,
                     location: locationData
                 }
-                axios.post(`http://localhost:5000/order`, orderInfo)
+                axiosSecure.post(`/order`, orderInfo)
                     .then(() => {
                         navigate('/')
                         Swal.fire({

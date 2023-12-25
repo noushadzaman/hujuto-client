@@ -10,10 +10,15 @@ import { Map, Marker } from "pigeon-maps"
 import useAxios from '../../hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { MoonLoader } from 'react-spinners';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const ProductDetails = () => {
+    const axiosSecure = useAxiosSecure()
     const productDetails = useLoaderData();
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
     const { _id, imageUrls, name, price, rating, shortDescription, availability, location } = productDetails;
     const { user } = useContext(AuthContext);
     const userIdentity = user?.email;
@@ -25,7 +30,7 @@ const ProductDetails = () => {
     const { refetch, data, isLoading } = useQuery({
         queryKey: ['cart', userIdentity],
         queryFn: async () => {
-            const res = await axiosPublic(`/cartProduct?email=${userIdentity}`);
+            const res = await axiosSecure(`/cartProduct?email=${userIdentity}`);
             setMyProductsState(res.data);
             return res;
         }
@@ -36,11 +41,19 @@ const ProductDetails = () => {
         queryFn: () => axiosPublic(`/user?email=${userIdentity}`)
     })
 
-    if (roleLoading || isLoading) {
-        return <progress></progress>
+    if (isLoading || roleLoading) {
+        return <div className="my-[200px] w-[150px] mx-auto">
+            <MoonLoader
+                color={color}
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
     }
     const role = roleData?.data[0]?.role;
-    console.log(role)
+    console.log(myProductsState)
 
     const handleAddToCart = () => {
         const available = myProductsState.find(productState => productState.productId === _id);
@@ -57,15 +70,9 @@ const ProductDetails = () => {
             productId: _id,
             userEmail: userIdentity,
         };
-        fetch('http://localhost:5000/cartProduct', {
-            method: "POST",
-            headers: {
-                "content-type": "Application/json"
-            },
-            body: JSON.stringify(cartProduct)
-        })
-            .then(res => res.json())
-            .then(() => {
+        axiosSecure.post(`/cartProduct`, cartProduct)
+            .then(res => {
+                console.log(res.data);
                 toast.success('Item added to cart successfully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -96,7 +103,7 @@ const ProductDetails = () => {
                     <p className="text-body  md:text-[20px]">Rating: {rating}</p>
                     <p className="text-body  md:text-[20px]">Price: {price}</p>
                     {
-                        role === 'customer' &&
+                        role === 'customer' || role === undefined &&
                         <div className='flex gap-2 '>
                             <button
                                 onClick={handleAddToCart}

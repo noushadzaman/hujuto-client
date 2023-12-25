@@ -7,9 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../../hooks/useAxios';
 import MoonLoader from "react-spinners/MoonLoader";
 import { useState } from 'react';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
-const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
+const CartCard = ({ singleProduct, refetch }) => {
     const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure();
     let [loading, setLoading] = useState(true);
     let [color, setColor] = useState("#d6cab8");
     const { productId, _id } = singleProduct;
@@ -38,14 +40,10 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
     const { imageUrls, name, price, _id: id } = data?.data;
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/cartProduct/${_id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const remaining = myProductsState.filter(productState => productState.productId !== id);
-                setMyProductsState(remaining);
+        axiosSecure.delete(`/cartProduct/${_id}`)
+            .then(res => {
+                console.log(res);
+                refetch()
                 toast.success('Product deleted successfully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -56,7 +54,7 @@ const CartCard = ({ singleProduct, setMyProductsState, myProductsState }) => {
                     progress: undefined,
                     theme: "light",
                 });
-            });
+            })
     }
 
     return (

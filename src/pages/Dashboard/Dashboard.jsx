@@ -1,26 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../hooks/useAxios";
 import DashboardItem from "./DashboardItem";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Dashboard = () => {
-    const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure()
     const { refetch, data: orders, isLoading } = useQuery({
         queryKey: ['orders'],
-        queryFn: () => axiosPublic(`/order`)
+        queryFn: () => axiosSecure.get(`/order`)
     })
 
-    if (isLoading) {
+    if (isLoading) { 
         return <progress></progress>
     }
 
-    const { quantity, creditCard, user, location, productId, _id } = orders?.data;
-    console.log(quantity, creditCard, user, location, productId, _id)
-    console.log(orders.data)
     return (
         <div>
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Buyer</th>

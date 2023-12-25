@@ -14,10 +14,14 @@ const BrandCard = ({ brand }) => {
             </div>
             <h3 className="text-[#404040] text-[22px] font-semibold">{brandName}</h3>
             <p className="text-[#404040] text-center text-[16px] leading-7 py-[30px] font-[600]">{description}</p>
-            <Link className='absolute bottom-3 w-[140px] h-[35px] md:w-[200px] md:h-[50px] text-center'
+            <Link
+                className='absolute bottom-3 w-[140px] h-[35px] md:w-[200px] md:h-[50px] text-center'
                 to={`/brandDetail/${_id}`}
             >
-                <button className='btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]'>MORE DETAILS</button>
+                <button
+                    onClick={() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }} className='btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]'>MORE DETAILS</button>
             </Link>
         </div>
     );

@@ -2,25 +2,25 @@ import React from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { Map, Marker } from "pigeon-maps"
-import useAxios from '../../hooks/useAxios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const DashboardItem = ({ singleOrder, refetch }) => {
-    const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure();
     const { _id, buyerName, buyerEmail, quantity, location, locationName, buyerPhoto, vehicleName, creditCard } = singleOrder;
     const [open, setOpen] = React.useState(false);
 
     const handleDeliver = () => {
-        axiosPublic.post(`/orderDelete/${_id}`)
+        axiosSecure.delete(`/order/${_id}`)
             .then(res => {
                 console.log(res.data);
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: `${vehicleName} has been delivered to ${locationName}`,
+                    title: `${quantity} ${vehicleName} has been delivered to ${locationName}`,
                     showConfirmButton: false,
-                    timer: 2000
-                  });
+                    timer: 2500
+                });
                 refetch();
             })
     }

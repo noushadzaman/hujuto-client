@@ -7,8 +7,8 @@ import MoonLoader from "react-spinners/MoonLoader";
 const Car = () => {
     const axiosPublic = useAxios();
     let [loading, setLoading] = useState(true);
-    const [price, setPrice] = useState('');
     let [color, setColor] = useState("#d6cab8");
+    const [price, setPrice] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
 
     const { data: countArray, isLoading: countLoading } = useQuery({
@@ -53,12 +53,14 @@ const Car = () => {
     const goToPreviousPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
     const goToNextPage = () => {
         if (currentPage < numberOfPages - 1) {
             setCurrentPage(currentPage + 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
@@ -86,7 +88,10 @@ const Car = () => {
                     {
                         pages.map(page => <button
                             className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px]`}
-                            onClick={() => setCurrentPage(page)}
+                            onClick={() => {
+                                setCurrentPage(page)
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
                             key={page}
                         >{page}</button>)
                     }

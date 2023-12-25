@@ -2,23 +2,23 @@ import { useState, useContext } from "react";
 import CartCard from "./CartCard/CartCard";
 import { AuthContext } from '../../provider/AuthProvider';
 import { useQuery } from "@tanstack/react-query";
-import useAxios from "../../hooks/useAxios";
 import { ToastContainer } from 'react-toastify';
 import MoonLoader from "react-spinners/MoonLoader";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const Cart = () => {
-    const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure();
     let [loading, setLoading] = useState(true);
     let [color, setColor] = useState("#d6cab8");
     const { user } = useContext(AuthContext);
     const [myProductsState, setMyProductsState] = useState([]);
     const userIdentity = user.email;
 
-    const { data, isLoading } = useQuery({
+    const { refetch, data, isLoading } = useQuery({
         queryKey: ['cart', userIdentity],
         queryFn: async () => {
-            const res = await axiosPublic(`/cartProduct?email=${userIdentity}`);
+            const res = await axiosSecure.get(`/cartProduct?email=${userIdentity}`);
             setMyProductsState(res.data);
             return res;
         }
@@ -26,12 +26,12 @@ const Cart = () => {
 
     if (isLoading) {
         <MoonLoader
-        color={color}
-        loading={loading}
-        size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-    />
+            color={color}
+            loading={loading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+        />
     }
 
     return (
@@ -48,8 +48,7 @@ const Cart = () => {
                             myProductsState.map(singleProduct => <CartCard
                                 key={singleProduct?._id}
                                 singleProduct={singleProduct}
-                                setMyProductsState={setMyProductsState}
-                                myProductsState={myProductsState}
+                                refetch={refetch}
                             ></CartCard>)
 
                         }

@@ -42,7 +42,7 @@ const Navbar = () => {
         </NavLink>
 
         {
-            isAdmin === 'customer' &&
+            isAdmin === 'customer' || isAdmin === undefined &&
             <NavLink to="/cart">
                 <button className="button">
                     <span>&nbsp;Cart&nbsp;</span>
@@ -71,7 +71,7 @@ const Navbar = () => {
             </NavLink>
         }
         {
-            !isAdmin === 'admin' &&
+            !isAdmin === 'admin' || isAdmin === undefined &&
             <NavLink to="/contact">
                 <button className="button">
                     <span>&nbsp;Contact&nbsp;</span>

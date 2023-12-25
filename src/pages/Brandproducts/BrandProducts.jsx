@@ -41,7 +41,7 @@ const BrandProducts = ({ brandName }) => {
             <MoonLoader
                 color={color}
                 loading={loading}
-                size={150} 
+                size={150}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />
@@ -50,12 +50,14 @@ const BrandProducts = ({ brandName }) => {
     const pages = [...Array(numberOfPages).keys()];
 
     const goToPreviousPage = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
 
     const goToNextPage = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         if (currentPage < numberOfPages - 1) {
             setCurrentPage(currentPage + 1);
         }
@@ -85,7 +87,10 @@ const BrandProducts = ({ brandName }) => {
                 {
                     pages.map(page => <button
                         className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px]`}
-                        onClick={() => setCurrentPage(page)}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                            setCurrentPage(page)
+                        }}
                         key={page}
                     >{page}</button>)
                 }
