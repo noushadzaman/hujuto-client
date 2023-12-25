@@ -6,6 +6,7 @@ import useAxios from "../../hooks/useAxios";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const imageApiKey = import.meta.env.VITE_image_api_key;
 const apiKey = import.meta.env.VITE_Opencage_location_api;
@@ -14,6 +15,7 @@ const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
 
 const Update = () => {
     const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure();
     const [imagesNumber, setImagesNumber] = useState([1]);
     const [submissionLoading, setSubmissionLoading] = useState(false);
 
@@ -23,12 +25,10 @@ const Update = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
     const _id = useParams();
     const id = _id.id;
-    console.log(id);
 
     const { data: defaultValueData, isLoading: defaultValueLoading } = useQuery({
         queryKey: ['vehicle', id],
@@ -36,7 +36,7 @@ const Update = () => {
     })
     const { data, isLoading } = useQuery({
         queryKey: ['brands'],
-        queryFn: () => axios.get('http://localhost:5000/brand')
+        queryFn: () => axios.get('https://hujuto-server.vercel.app/brand')
     })
     if (defaultValueLoading) {
         return <progress></progress>
@@ -45,7 +45,6 @@ const Update = () => {
     const locationArray = defaultValue.location.name.split(',');
     const country = locationArray[0];
     const location = locationArray[1];
-    console.log(defaultValue.location.name.split(','))
 
     if (isLoading) {
         return (
@@ -61,7 +60,6 @@ const Update = () => {
         )
     }
 
-    console.log(data.data)
     const handleIncreaseInput = () => {
         if (imagesNumber.length < 8) {
             setImagesNumber([...imagesNumber, 1])
@@ -69,7 +67,6 @@ const Update = () => {
     }
 
     const onSubmit = async (form) => {
-        console.log(form)
         setSubmissionLoading(true)
         let vehicle;
         let imageUrls = [];
@@ -91,9 +88,7 @@ const Update = () => {
             imageUrls.push(thumbnailUrl);
             let i = 0;
             while (i < imagesNumber.length) {
-                console.log(i)
                 const image = form[`images${i}`];
-                console.log(image)
                 const res = await axiosPublic.post(imageHostingUrl, { image: image[0] }, {
                     headers: {
                         "content-Type": "multipart/form-data"
@@ -136,28 +131,18 @@ const Update = () => {
                                         MapLon: mapLon,
                                     }
                                     vehicle = { name, brandName, location: locationObj, type, price, rating, shortDescription, imageUrls, direction };
-                                    console.log(vehicle);
-                                    fetch(`http://localhost:5000/update/${id}`, {
-                                        method: "PATCH",
-                                        headers: {
-                                            "Content-type": "Application/json"
-                                        },
-                                        body: JSON.stringify(vehicle)
-                                    })
-                                        .then(res => res.json())
-                                        .then(data => {
-                                            console.log(data)
+                                    // console.log(vehicle);
+                                    axiosSecure.patch(`/vehicle/${id}`, vehicle)
+                                        .then(() => {
+                                            navigate('/');
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Product updated successfully',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
                                         })
-                                    navigate('/');
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Product updated successfully',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-
-
                                 } else {
                                     Swal.fire({
                                         icon: "error",

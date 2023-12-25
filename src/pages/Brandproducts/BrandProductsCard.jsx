@@ -6,16 +6,15 @@ import AOS from 'aos';
 import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
-AOS.init({
-    delay: 300,
-    duration: 400,
-    once: false,
-    throttleDelay: 500,
-});
 
 const BrandProductsCard = ({ vehicle, index }) => {
+    AOS.init({
+        delay: 600,
+        duration: 600,
+        once: true,
+    });
     const { _id, imageUrls, direction, name, price, rating, shortDescription } = vehicle;
-    const { user, loading, logOut } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const axiosPublic = useAxios();
     const email = user?.email;
 
@@ -30,8 +29,8 @@ const BrandProductsCard = ({ vehicle, index }) => {
     const role = data?.data[0]?.role;
 
     return (
-        <div data-aos="fade-up" className={`w-[65%] hover:bg-[#F7F5F2] hover:shadow-[#ccb89b] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl transition-shadow
-        ${index % 2 == 0 ? 'justify-self-start' : 'justify-self-end'}
+        <div data-aos="fade-up" className={`w-[65%] my-[20px] hover:bg-[#F7F5F2] hover:shadow-[#ccb89b] rounded-[2xl] p-1 flex flex-col items-start justify-center gap-3 hover:shadow-2xl transition-shadow justify-self-center
+        ${index % 2 == 0 ? 'md:justify-self-start' : 'md:justify-self-end'}
         `}>
             <div className="rounded-2xl w-[100%] flex items-center flex-col">
                 <div className='absolute top-3'>
@@ -51,11 +50,17 @@ const BrandProductsCard = ({ vehicle, index }) => {
                     {
                         role === 'admin' &&
                         <Link
+                            onClick={() => {
+                                window.scrollTo({ top: 0 });
+                            }}
                             to={`/vehicleUpdate/${_id}`}
                             className="w-full text-center btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px]"
                         >Update</Link>
                     }
                     <Link
+                        onClick={() => {
+                            window.scrollTo({ top: 0 });
+                        }}
                         to={`/vehicle/${_id}`}
                         className="w-full btn-primary px-[12px] py-[6px] md:px-[40px] md:py-[17px] text-center"
                     >MORE DETAILS</Link>

@@ -53,7 +53,6 @@ const ProductDetails = () => {
         </div>
     }
     const role = roleData?.data[0]?.role;
-    console.log(myProductsState)
 
     const handleAddToCart = () => {
         const available = myProductsState.find(productState => productState.productId === _id);

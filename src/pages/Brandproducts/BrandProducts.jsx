@@ -19,7 +19,6 @@ const BrandProducts = ({ brandName }) => {
             return res;
         },
     })
-    console.log(countArray?.data?.length)
 
     const count = countArray?.data?.length;
 
@@ -83,10 +82,10 @@ const BrandProducts = ({ brandName }) => {
                 }
             </div>
             <div className="pagination">
-                <button onClick={goToPreviousPage} className="btn bg-[#f7f5f2] rounded-[2px] hover:bg-[#d6cab8]">Prev</button>
+                <button onClick={goToPreviousPage} className="btn bg-[#f7f5f2] rounded-[2px] hover:bg-[#d6cab8] btn-sm">Prev</button>
                 {
                     pages.map(page => <button
-                        className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px]`}
+                        className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px] btn-sm`}
                         onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' })
                             setCurrentPage(page)
@@ -94,7 +93,7 @@ const BrandProducts = ({ brandName }) => {
                         key={page}
                     >{page}</button>)
                 }
-                <button onClick={goToNextPage} className="btn bg-[#f7f5f2] rounded-[2px] ml-2 hover:bg-[#d6cab8]">Next</button>
+                <button onClick={goToNextPage} className="btn bg-[#f7f5f2] rounded-[2px] ml-2 hover:bg-[#d6cab8] btn-sm">Next</button>
             </div>
         </div>
     );

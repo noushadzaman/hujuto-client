@@ -72,11 +72,11 @@ const CartCard = ({ singleProduct, refetch }) => {
                 <Link
                     to={`/vehicle/${productId}`}
                 >
-                    <button className="w-[120px] btn-primary h-[35px] md:w-[200px] md:h-[50px] text-center">DETAILS</button>
+                    <button className="w-[120px] md:w-[140px] btn-primary h-[35px] md:h-[40px] text-center">DETAILS</button>
                 </Link>
                 <button
                     onClick={handleDelete}
-                    className="flex gap-3 items-center btn-primary w-[120px] h-[35px] md:w-[200px] md:h-[50px] justify-center"
+                    className="flex gap-3 items-center btn-primary w-[120px] md:w-[140px] h-[35px] md:h-[40px] justify-center md:mr-2"
                 >Delete<AiOutlineDelete className='text-[20px]' /></button>
             </div>
         </div>

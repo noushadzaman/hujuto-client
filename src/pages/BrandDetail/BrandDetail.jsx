@@ -13,7 +13,7 @@ const BrandDetail = () => {
 
     const { data, isLoading } = useQuery({
         queryKey: ['brand', id.id],
-        queryFn: () => axiosPublic(`http://localhost:5000/brand/${id.id}`)
+        queryFn: () => axiosPublic(`https://hujuto-server.vercel.app/brand/${id.id}`)
     })
 
     if (isLoading) {

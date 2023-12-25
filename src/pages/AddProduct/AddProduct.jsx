@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const imageApiKey = import.meta.env.VITE_image_api_key;
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageApiKey}`;
@@ -14,6 +15,7 @@ const apiKey = import.meta.env.VITE_Opencage_location_api;
 
 const AddProduct = () => {
     const axiosPublic = useAxios();
+    const axiosSecure = useAxiosSecure();
     const [imagesNumber, setImagesNumber] = useState([1]);
     const [submissionLoading, setSubmissionLoading] = useState(false);
 
@@ -29,7 +31,7 @@ const AddProduct = () => {
 
     const { data, isLoading } = useQuery({
         queryKey: ['brands'],
-        queryFn: () => axios.get('http://localhost:5000/brand')
+        queryFn: () => axios.get('https://hujuto-server.vercel.app/brand')
     })
 
     if (isLoading) {
@@ -120,26 +122,17 @@ const AddProduct = () => {
                                         MapLon: mapLon,
                                     }
                                     newVehicle = { name, brandName, location: locationObj, type, price, rating, shortDescription, imageUrls, direction };
-                                    console.log(newVehicle);
-                                    fetch('http://localhost:5000/vehicle', {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-type": "Application/json"
-                                        },
-                                        body: JSON.stringify(newVehicle)
-                                    })
-                                        .then(res => res.json())
-                                        .then(data => console.log(data))
-                                    setSubmissionLoading(false)
-                                    navigate('/');
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'Product has been added',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-
+                                    axiosSecure.post(`/vehicle`, newVehicle)
+                                        .then(() => {
+                                            navigate('/');
+                                            Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Product added successfully',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+                                        })
                                 } else {
                                     Swal.fire({
                                         icon: "error",

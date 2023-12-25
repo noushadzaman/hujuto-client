@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: '/vehicle/:id',
                 element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/vehicle/${params.id}`)
+                loader: ({ params }) => fetch(`https://hujuto-server.vercel.app/vehicle/${params.id}`)
             },
             {
                 path: '/contact',
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>,
-                loader: () => fetch('http://localhost:5000/cartProduct')
+                loader: () => fetch('https://hujuto-server.vercel.app/cartProduct')
             },
             {
                 path: '/cartProduct/:id',

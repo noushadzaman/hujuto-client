@@ -53,14 +53,14 @@ const Car = () => {
     const goToPreviousPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0 });
         }
     };
 
     const goToNextPage = () => {
         if (currentPage < numberOfPages - 1) {
             setCurrentPage(currentPage + 1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0 });
         }
     };
 
@@ -68,13 +68,13 @@ const Car = () => {
 
     return (
         <div className="flex flex-col pt-[80px] relative">
-            <select value={price} onChange={handleSelectChange} className="select select-bordered w-full max-w-xs absolute right-0 border-[#d6cab8] rounded-[2px] text-[#d6cab8] text-xl">
+            <select value={price} onChange={handleSelectChange} className="select select-bordered w-full max-w-xs absolute right-0 border-[#d6cab8] mr-[50px] md:mr-0 rounded-[2px] text-[#d6cab8] text-xl">
                 <option value={''} disabled>Filter with price</option>
                 <option value={'desc'}>Price High To Low</option>
                 <option value={'asc'}>Price Low To High</option>
             </select>
             <div className="flex items-center flex-col py-[50px] shrink-0">
-                <div className="pb-[50px] items-center md:grid grid-cols-1 gap-5  ">
+                <div className="pb-[50px] items-center grid grid-cols-1 gap-5">
                     {
                         vehicles?.data.map((vehicle, index) => <BrandProductsCard
                             key={vehicle._id}
@@ -83,19 +83,21 @@ const Car = () => {
                         ></BrandProductsCard>)
                     }
                 </div>
-                <div className="pagination">
-                    <button onClick={goToPreviousPage} className="btn bg-[#f7f5f2] rounded-[2px] hover:bg-[#d6cab8]">Prev</button>
-                    {
-                        pages.map(page => <button
-                            className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px]`}
-                            onClick={() => {
-                                setCurrentPage(page)
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            key={page}
-                        >{page}</button>)
-                    }
-                    <button onClick={goToNextPage} className="btn bg-[#f7f5f2] rounded-[2px] ml-2 hover:bg-[#d6cab8]">Next</button>
+                <div className="pagination flex ">
+                    <button onClick={goToPreviousPage} className="btn btn-sm bg-[#f7f5f2] rounded-[2px] hover:bg-[#d6cab8]">Prev</button>
+                    <div>
+                        {
+                            pages.map(page => <button
+                                className={`${page == currentPage ? 'bg-[#d6cab8]' : 'bg-[#f7f5f2]'} btn ml-2 hover:bg-[#d6cab8] rounded-[2px] btn-sm`}
+                                onClick={() => {
+                                    setCurrentPage(page)
+                                    window.scrollTo({ top: 0 });
+                                }}
+                                key={page}
+                            >{page}</button>)
+                        }
+                    </div>
+                    <button onClick={goToNextPage} className="btn bg-[#f7f5f2] rounded-[2px] ml-2 hover:bg-[#d6cab8] btn-sm">Next</button>
                 </div>
             </div>
         </div>

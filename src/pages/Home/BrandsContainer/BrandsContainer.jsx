@@ -4,7 +4,7 @@ import BrandCard from "../BrandCard/BrandCard";
 const BrandsContainer = () => {
     const [brands, setBrands] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/brand')
+        fetch('https://hujuto-server.vercel.app/brand')
             .then(res => res.json())
             .then(data => setBrands(data))
     }, [])

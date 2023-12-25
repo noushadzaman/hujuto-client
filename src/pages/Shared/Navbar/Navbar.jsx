@@ -1,15 +1,19 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../../../public/logo.png'
 import './Navbar.css';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from 'sweetalert2'
 import useAxios from '../../../hooks/useAxios'
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Navbar = () => {
+    const navigate = useNavigate()
     const { user, loading, logOut } = useContext(AuthContext);
     const axiosPublic = useAxios();
+    let [spinnerLoading, setSpinnerLoading] = useState(true);
+    let [color, setColor] = useState("#d6cab8");
     const email = user?.email;
 
     const { data, isLoading } = useQuery({
@@ -18,7 +22,15 @@ const Navbar = () => {
     })
 
     if (isLoading) {
-        return <progress></progress>
+        return <div className="w-[50px] mx-auto">
+            <MoonLoader
+                color={color}
+                loading={spinnerLoading}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
     }
     const isAdmin = data?.data[0]?.role;
 
@@ -31,6 +43,7 @@ const Navbar = () => {
             showConfirmButton: false,
             timer: 2500
         })
+        navigate('/')
     }
 
     const navLinks = <>
