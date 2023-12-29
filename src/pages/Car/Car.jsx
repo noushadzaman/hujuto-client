@@ -34,6 +34,7 @@ const Car = () => {
     });
 
     const handleSelectChange = (event) => {
+        setCurrentPage(0)
         setPrice(event.target.value);
         setLoading(true);
     }

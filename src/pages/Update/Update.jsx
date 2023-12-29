@@ -43,8 +43,8 @@ const Update = () => {
     }
     const defaultValue = defaultValueData?.data;
     const locationArray = defaultValue.location.name.split(',');
-    const country = locationArray[0];
-    const location = locationArray[1];
+    const location = locationArray[0];
+    const country = locationArray[1];
 
     if (isLoading) {
         return (
@@ -130,7 +130,17 @@ const Update = () => {
                                         MapLat: mapLat,
                                         MapLon: mapLon,
                                     }
-                                    vehicle = { name, brandName, location: locationObj, type, price, rating, shortDescription, imageUrls, direction };
+                                    vehicle = {
+                                        name,
+                                        brandName,
+                                        location: locationObj,
+                                        type,
+                                        price,
+                                        rating,
+                                        shortDescription,
+                                        imageUrls,
+                                        direction,
+                                    };
                                     // console.log(vehicle);
                                     axiosSecure.patch(`/vehicle/${id}`, vehicle)
                                         .then(() => {

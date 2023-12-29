@@ -97,16 +97,16 @@ const ProductDetails = () => {
                     }
                 </Carousel>
                 <div className="px-[10%] py-[50px] text-[#404040] space-y-3">
-                    <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}<span className='md:text-[20px] ml-5 text-[#404040]'>{!availability && "(Not available right now)"}</span></p>
+                    <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}</p>
                     <p className="text-body  md:text-[20px]">{shortDescription}</p>
                     <p className="text-body  md:text-[20px]">Rating: {rating}</p>
                     <p className="text-body  md:text-[20px]">Price: {price}</p>
                     {
-                        role === 'customer' || role === undefined &&
+                        (role === undefined) || (role === 'customer') ?
                         <div className='flex gap-2 '>
                             <button
                                 onClick={handleAddToCart}
-                                className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5"
+                                className="btn-primary w-[70%] h-[35px] md:h-[50px] flex items-center justify-center gap-5 px-1 shrink-0"
                             >Add to cart<span className='text-[20px]' ><BsFillCartPlusFill /></span></button>
                             {
                                 availability &&
@@ -114,6 +114,7 @@ const ProductDetails = () => {
                                 > Order</Link>
                             }
                         </div>
+                        : null
                     }
                 </div>
                 <div>

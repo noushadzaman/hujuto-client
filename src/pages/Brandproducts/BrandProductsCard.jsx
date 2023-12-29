@@ -11,7 +11,7 @@ const BrandProductsCard = ({ vehicle, index }) => {
     AOS.init({
         delay: 600,
         duration: 600,
-        once: true,
+        once: false,
     });
     const { _id, imageUrls, direction, name, price, rating, shortDescription } = vehicle;
     const { user } = useContext(AuthContext);

@@ -29,7 +29,7 @@ const Footer = () => {
             </div>
 
             <nav className="border-t-2 border-[#404040] py-3 bg-[#0c1315] ">
-                <p className="text-[#CCCCCC] text-[14px] text-center">© 2023 Noushad zaman, All Rights Reserved</p>
+                <p className="text-[#CCCCCC] text-[14px] text-center">© 2024 Noushad zaman, All Rights Reserved</p>
             </nav>
 
         </footer>

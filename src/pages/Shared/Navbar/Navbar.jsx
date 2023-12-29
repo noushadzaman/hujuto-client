@@ -33,6 +33,7 @@ const Navbar = () => {
         </div>
     }
     const isAdmin = data?.data[0]?.role;
+    console.log(isAdmin)
 
     const handleLogOut = () => {
         logOut();
@@ -55,13 +56,13 @@ const Navbar = () => {
         </NavLink>
 
         {
-            isAdmin === 'customer' || isAdmin === undefined &&
+            (isAdmin === undefined) || (isAdmin === 'customer') ?
             <NavLink to="/cart">
                 <button className="button">
                     <span>&nbsp;Cart&nbsp;</span>
                     <span className="hover-text">&nbsp;Cart&nbsp;</span>
                 </button>
-            </NavLink>
+            </NavLink> : null
         }
 
         {
@@ -83,15 +84,12 @@ const Navbar = () => {
                 </button>
             </NavLink>
         }
-        {
-            !isAdmin === 'admin' || isAdmin === undefined &&
-            <NavLink to="/contact">
-                <button className="button">
-                    <span>&nbsp;Contact&nbsp;</span>
-                    <span className="hover-text">&nbsp;Contact&nbsp;</span>
-                </button>
-            </NavLink>
-        }
+        <NavLink to="/contact">
+            <button className="button">
+                <span>&nbsp;Contact&nbsp;</span>
+                <span className="hover-text">&nbsp;Contact&nbsp;</span>
+            </button>
+        </NavLink>
     </>
 
     return (

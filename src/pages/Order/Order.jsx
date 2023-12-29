@@ -75,7 +75,7 @@ const Order = () => {
 
     return (
         <div className="card-details px-[10%] mt-[30px] mb-[100px]">
-            <img className='max-w-[800px]' src={imageUrls[1]} />
+            <img className='w-[100%] max-w-[800px]' src={imageUrls[1]} />
             <div className="px-[10%] py-[50px] text-[#404040] space-y-3">
                 <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}</p>
                 <p className="text-body  md:text-[20px]">Price: {price}</p>

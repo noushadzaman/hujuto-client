@@ -115,13 +115,23 @@ const AddProduct = () => {
                                     markerLat = location.lat;
                                     markerLon = location.lng;
                                     const locationObj = {
-                                        name: `${exportCountry}, ${exportLocation}`,
+                                        name: `${exportLocation}, ${exportCountry}`,
                                         MarkerLat: markerLat,
                                         MarkerLon: markerLon,
                                         MapLat: mapLat,
                                         MapLon: mapLon,
                                     }
-                                    newVehicle = { name, brandName, location: locationObj, type, price, rating, shortDescription, imageUrls, direction };
+                                    newVehicle = {
+                                        name,
+                                        brandName,
+                                        location: locationObj,
+                                        type,
+                                        price,
+                                        rating,
+                                        shortDescription,
+                                        imageUrls,
+                                        direction
+                                    };
                                     axiosSecure.post(`/vehicle`, newVehicle)
                                         .then(() => {
                                             navigate('/');
@@ -132,6 +142,7 @@ const AddProduct = () => {
                                                 showConfirmButton: false,
                                                 timer: 1500
                                             })
+                                            setSubmissionLoading(false)
                                         })
                                 } else {
                                     Swal.fire({
@@ -139,10 +150,12 @@ const AddProduct = () => {
                                         title: "Location is not valid",
                                         text: "Please provide a valid location",
                                     });
+                                    setSubmissionLoading(false)
                                 }
                             })
                             .catch(error => {
                                 console.error('Error:', error.message);
+                                setSubmissionLoading(false)
                             });
 
                     } else {
@@ -151,10 +164,12 @@ const AddProduct = () => {
                             title: "Location is not valid",
                             text: "Please provide a valid location",
                         });
+                        setSubmissionLoading(false)
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error.message);
+                    setSubmissionLoading(false)
                 });
         }
     }
