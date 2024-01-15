@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../../../public/logo.png'
 import './Navbar.css';
@@ -22,18 +23,17 @@ const Navbar = () => {
     })
 
     if (isLoading) {
-        return <div className="w-[50px] mx-auto">
+        return <div className="w-[50px] mx-auto my-[23px]">
             <MoonLoader
                 color={color}
                 loading={spinnerLoading}
-                size={50}
+                size={25}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />
         </div>
     }
     const isAdmin = data?.data[0]?.role;
-    console.log(isAdmin)
 
     const handleLogOut = () => {
         logOut();
@@ -57,12 +57,12 @@ const Navbar = () => {
 
         {
             (isAdmin === undefined) || (isAdmin === 'customer') ?
-            <NavLink to="/cart">
-                <button className="button">
-                    <span>&nbsp;Cart&nbsp;</span>
-                    <span className="hover-text">&nbsp;Cart&nbsp;</span>
-                </button>
-            </NavLink> : null
+                <NavLink to="/cart">
+                    <button className="button">
+                        <span>&nbsp;Cart&nbsp;</span>
+                        <span className="hover-text">&nbsp;Cart&nbsp;</span>
+                    </button>
+                </NavLink> : null
         }
 
         {
@@ -114,12 +114,20 @@ const Navbar = () => {
             </div>
             {
                 loading ?
-                    <span className="loading loading-spinner loading-lg"></span>
+                    <div className="w-[50px] mx-auto my-[18px]">
+                        <MoonLoader
+                            color={color}
+                            loading={spinnerLoading}
+                            size={25}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
                     : <div className="navbar-end">
                         {
                             user ?
                                 <div className="flex items-center gap-3">
-                                    <div className="flex flex-col items-center">
+                                    <div className="md:flex flex-col items-center hidden">
                                         <img referrerPolicy="no-referrer" className="rounded h-[40px]" src={user?.photoURL} alt="" />
                                         <p className="text-[#BFA37C] font-semibold text-center">{user?.displayName}</p>
                                     </div>
@@ -130,7 +138,9 @@ const Navbar = () => {
                                     </button>
                                 </div>
                                 :
-                                <Link to="/login"><button className="btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]">Log In</button></Link>
+                                <Link to="/login">
+                                    <button className="btn-primary w-[140px] h-[35px] md:w-[200px] md:h-[50px]">Log In</button>
+                                </Link>
 
                         }
                     </div>

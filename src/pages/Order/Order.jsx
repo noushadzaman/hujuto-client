@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -27,13 +28,13 @@ const Order = () => {
     } = useForm()
 
     if (isLoading) {
-        return <progress></progress>
+        return
     }
 
     const { _id, imageUrls, name, price, location } = data?.data;
     const onSubmit = async (form) => {
         const creditCard = form.creditCard;
-        const quantity = form.quantity;
+        const quantity = Number(form.quantity);
         const location = form.location;
         let locationData;
         const geocodingUrlForCountry = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${apiKey}`;
@@ -53,14 +54,23 @@ const Order = () => {
                 }
                 axiosSecure.post(`/order`, orderInfo)
                     .then(() => {
-                        navigate('/')
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Your order has been sent",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        const orderedNumber = data?.data?.orderedNumber === undefined ? quantity : data?.data?.orderedNumber + quantity || quantity;
+                        console.log(orderedNumber)
+
+                        axiosSecure.patch(`/vehicleIncrease/${_id}`, { orderedNumber })
+                            .then(() => {
+                                navigate('/')
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Your order has been sent",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            })
                     })
             })
             .catch(() => {
@@ -71,6 +81,8 @@ const Order = () => {
                 });
             })
     }
+
+
 
 
     return (

@@ -37,15 +37,15 @@ const AuthProvider = ({ children }) => {
             const userInfo = { email: currentUser?.email };
             if (currentUser) {
                 axios.post(`https://hujuto-server.vercel.app/jwt`, userInfo, { withCredentials: true })
-                    .then(res => {
-                        console.log('token res', res.data);
+                    .then(() => {
+
                     });
                 setLoading(false);
             }
             else {
                 axios.post(`https://hujuto-server.vercel.app/logout`, userInfo, { withCredentials: true })
-                    .then(res => {
-                        console.log('token res', res.data);
+                    .then(() => {
+
                     });
                 setLoading(false);
             }

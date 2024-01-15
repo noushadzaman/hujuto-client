@@ -15,6 +15,7 @@
     "aos": "^2.3.4",
     "axios": "^1.6.2",
     "firebase": "^10.5.0",
+    "keen-slider": "^6.8.6",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "pigeon-maps": "^0.21.3",

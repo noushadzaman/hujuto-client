@@ -1,5 +1,6 @@
+/* eslint-disable  */
 import Swal from 'sweetalert2'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAxios from "../../hooks/useAxios";
@@ -38,9 +39,11 @@ const Update = () => {
         queryKey: ['brands'],
         queryFn: () => axios.get('https://hujuto-server.vercel.app/brand')
     })
+    
     if (defaultValueLoading) {
-        return <progress></progress>
+        return 
     }
+    
     const defaultValue = defaultValueData?.data;
     const locationArray = defaultValue.location.name.split(',');
     const location = locationArray[0];

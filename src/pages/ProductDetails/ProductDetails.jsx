@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLoaderData } from "react-router-dom";

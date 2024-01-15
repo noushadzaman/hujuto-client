@@ -5,11 +5,11 @@ import Footer from '../pages/Shared/Footer/Footer';
 const Main = () => {
     return (
         <>
-            <Navbar></Navbar>
-            <div className='min-h-[calc(100vh-392px)] max-w-[1400px] mx-auto'>
-                <Outlet></Outlet>
+            <Navbar />
+            <div className='min-h-[calc(100vh-512px)] max-w-[1400px] mx-auto'>
+                <Outlet />
             </div>
-            <Footer></Footer>
+            <Footer />
         </>
     );
 };

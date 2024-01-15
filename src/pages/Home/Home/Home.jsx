@@ -1,19 +1,21 @@
-import Banner from "../Banner/Banner";
-import BrandsContainer from "../BrandsContainer/BrandsContainer";
-import CompanyShowcase from "../CompanyShowcase/CompanyShowcase";
-import Faq from "../Faq/Faq";
-import Location from "../Location/Location";
-import VisitUs from "../VisitUs/VisitUs";
+import Banner from "../Banner";
+import BrandsContainer from "../BrandsContainer";
+import CompanyShowcase from "../CompanyShowcase";
+import Faq from "../Faq";
+import Location from "../Location";
+import Popular from "../Popular";
+import VisitUs from "../VisitUs";
 
 const Home = () => {
     return (
         <>
-            <Banner></Banner>
-            <CompanyShowcase></CompanyShowcase>
-            <BrandsContainer></BrandsContainer>
-            <VisitUs></VisitUs>
-            <Faq></Faq>
-            <Location></Location>
+            <Banner />
+            <CompanyShowcase />
+            <BrandsContainer />
+            <Popular />
+            <VisitUs />
+            <Faq />
+            <Location />
         </>
     );
 };

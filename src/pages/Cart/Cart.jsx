@@ -38,12 +38,11 @@ const Cart = () => {
         <div>
             {
                 !isLoading && myProductsState.length === 0 ?
-                    <div className="flex justify-center pt-[250px] text-[25px] text-[#b09d80]">
+                    <div className="flex justify-center pt-[190px] items-center text-[25px] text-[#b09d80]">
                         <p>Nothing added to cart yet</p>
                     </div>
                     :
-                    <div className="my-[150px] min-h-[10vh]">
-
+                    <div className="pt-[150px]">
                         {
                             myProductsState.map(singleProduct => <CartCard
                                 key={singleProduct?._id}

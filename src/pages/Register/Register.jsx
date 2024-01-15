@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from "react-router-dom";
@@ -35,14 +36,13 @@ const Register = () => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-            .then(res => {
-                console.log(res)
+            .then((res) => {
                 const photoUrl = res.data.data.display_url;
 
 
                 createUser(email, password)
-                    .then((res) => {
-                        console.log(res)
+                    .then(() => {
+
                         setNamePhoto(name, photoUrl);
                         setError('');
                         const user = {
@@ -52,8 +52,8 @@ const Register = () => {
                             role: 'customer'
                         }
                         axiosPublic.post(`/users`, user)
-                            .then(res => {
-                                console.log(res.data)
+                            .then(() => {
+
                             })
                         navigate('/');
                         Swal.fire({

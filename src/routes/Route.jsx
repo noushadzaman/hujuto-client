@@ -18,63 +18,63 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Main></Main>,
-        errorElement: <ErrorPage></ErrorPage>,
+        element: <Main />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home />
             },
             {
                 path: '/brandDetail/:id',
-                element: <BrandDetail></BrandDetail>
+                element: <BrandDetail />
             },
             {
                 path: '/login',
-                element: <Login></Login>
+                element: <Login />
             },
             {
                 path: '/register',
-                element: <Register></Register>
+                element: <Register />
             },
             {
                 path: '/addProduct',
-                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+                element: <PrivateRoute><AddProduct /></PrivateRoute>
             },
             {
                 path: '/cars',
-                element: <Car></Car>
+                element: <Car />
             },
             {
                 path: '/vehicle/:id',
-                element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+                element: <PrivateRoute><ProductDetails /></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://hujuto-server.vercel.app/vehicle/${params.id}`)
             },
             {
                 path: '/contact',
-                element: <Contact></Contact>
+                element: <Contact />
             },
             {
                 path: '/cart',
-                element: <PrivateRoute><Cart></Cart></PrivateRoute>,
+                element: <PrivateRoute><Cart /></PrivateRoute>,
                 loader: () => fetch('https://hujuto-server.vercel.app/cartProduct')
             },
             {
                 path: '/cartProduct/:id',
-                element: <PrivateRoute><Cart></Cart></PrivateRoute>,
+                element: <PrivateRoute><Cart /></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://hujuto-server-53jw4ymv8-noushads-projects.vercel.app/cartProduct/${params.id}`)
             },
             {
                 path: '/vehicleUpdate/:id',
-                element: <PrivateRoute><Update></Update></PrivateRoute>
+                element: <PrivateRoute><Update /></PrivateRoute>
             },
             {
                 path: '/order/:id',
-                element: <PrivateRoute><Order></Order></PrivateRoute>
+                element: <PrivateRoute><Order /></PrivateRoute>
             },
             {
                 path: '/dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+                element: <PrivateRoute><Dashboard /></PrivateRoute>
             },
         ]
     },
