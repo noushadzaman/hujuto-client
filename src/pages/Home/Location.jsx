@@ -5,22 +5,22 @@ const Location = () => {
             <div className="flex items-center gap-5 ">
                 <img className="h-[45px]" src="content-bottom-icon-001.png" alt="" />
                 <div>
-                    <p className="text-[#c9b190] font-semibold">s11 Rue de la Mutualité,</p>
-                    <p className="text-[#c9b190] font-semibold">92400 Paris</p>
+                    <p className="text-[#c9b190] font-semibold">Dhaka, 1205.</p>
+                    <p className="text-[#c9b190] font-semibold">Bangladesh.</p>
                 </div>
             </div>
             <div className="flex items-center gap-5">
                 <img className="h-[45px]" src="content-bottom-icon-003.png" alt="" />
                 <div>
-                    <p className="text-[#c9b190] font-semibold">Phone: (012) 345 6789 0123;</p>
-                    <p className="text-[#c9b190] font-semibold">Email: luxe@example.com</p>
+                    <p className="text-[#c9b190] font-semibold">Phone: 01534672418</p>
+                    <p className="text-[#c9b190] font-semibold">Email: noushadzaman333@gmail.com</p>
                 </div>
             </div>
             <div className="flex items-center gap-5">
                 <img className="h-[45px]" src="h1-icon-img-1.2.png" alt="" />
                 <div>
-                    <p className="text-[#c9b190] font-semibold">Mon-Sat 09:00-23:00;</p>
-                    <p className="text-[#c9b190] font-semibold">Sunday is closed.</p>
+                    <p className="text-[#c9b190] font-semibold">Sat-Thur 09:00-23:00;</p>
+                    <p className="text-[#c9b190] font-semibold">Friday is closed.</p>
                 </div>
             </div>
         </div>

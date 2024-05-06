@@ -4,6 +4,7 @@ import CompanyShowcase from "../CompanyShowcase";
 import Faq from "../Faq";
 import Location from "../Location";
 import Popular from "../Popular";
+import SuperCars from "../SuperCars";
 import VisitUs from "../VisitUs";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <CompanyShowcase />
             <BrandsContainer />
             <Popular />
+            <SuperCars />
             <VisitUs />
             <Faq />
             <Location />

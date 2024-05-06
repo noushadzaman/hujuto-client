@@ -5,7 +5,8 @@ import "keen-slider/keen-slider.min.css"
 import { MdDoubleArrow } from "react-icons/md";
 import { useNavigate } from "react-router-dom"
 
-const Popular = () => {
+
+const SuperCars = () => {
     const [sliderRef] = useKeenSlider({
         slides: {
             perView: 2,
@@ -16,9 +17,9 @@ const Popular = () => {
 
     const axiosPublic = useAxios()
     const { data: vehicles, isLoading } = useQuery({
-        queryKey: ['all-products'],
+        // queryKey: ['ca'],
         queryFn: async () => {
-            const res = await axiosPublic(`/vehicle?size=5&sortField=orderedNumber&sortOrder=desc`)
+            const res = await axiosPublic(`/vehicle?size=5&type=${'Supercar'}`)
             return res;
         },
     });
@@ -27,10 +28,11 @@ const Popular = () => {
         return
     }
 
+
     return (
         <>
-            <h2 className="text-[26px] md:text-[42px] text-[#0C1315] mb-[15px] text-center uppercase lg:w-[60%] mx-auto">Popular vehicles</h2>
-            <p className="text-[14px] tracking-widest text-[#BFA37C] mb-[50px] text-center">Our most ordered vehicles</p>
+            <h2 className="text-[26px] md:text-[42px] text-[#0C1315] mb-[15px] text-center uppercase lg:w-[60%] mx-auto">Super cars</h2>
+            <p className="text-[14px] tracking-widest text-[#BFA37C] mb-[50px] text-center">Our most luxurious super cars</p>
             <div ref={sliderRef} className="keen-slider flex mb-[100px] gap-[50px]">
                 {
                     vehicles?.data.map(vehicle => <div
@@ -59,4 +61,4 @@ const Popular = () => {
     );
 };
 
-export default Popular;
+export default SuperCars;
