@@ -20,7 +20,7 @@ const ProductDetails = () => {
     const productDetails = useLoaderData();
     let [loading, setLoading] = useState(true);
     let [color, setColor] = useState("#d6cab8");
-    const { _id, imageUrls, name, price, rating, shortDescription, availability, location } = productDetails;
+    const { _id, imageUrls, name, price, rating, shortDescription, availability, location, type, peopleAddedToCart, discount } = productDetails;
     const { user } = useContext(AuthContext);
     const userIdentity = user?.email;
     const images = imageUrls.slice(1, imageUrls.length);
@@ -33,6 +33,7 @@ const ProductDetails = () => {
         queryFn: async () => {
             const res = await axiosSecure(`/cartProduct?email=${userIdentity}`);
             setMyProductsState(res.data);
+            console.log(res?.data[0])
             return res;
         }
     });
@@ -72,7 +73,6 @@ const ProductDetails = () => {
         };
         axiosSecure.post(`/cartProduct`, cartProduct)
             .then(res => {
-                console.log(res.data);
                 toast.success('Item added to cart successfully', {
                     position: "top-right",
                     autoClose: 5000,
@@ -84,6 +84,23 @@ const ProductDetails = () => {
                     theme: "light",
                 });
                 refetch();
+            })
+
+
+        const addedToCart = peopleAddedToCart === undefined ? 1 : peopleAddedToCart + 1 || 1;
+
+        axiosSecure.patch(`/addedToCart/${_id}`, { addedToCart })
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your order has been sent",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 
@@ -101,21 +118,30 @@ const ProductDetails = () => {
                     <p className="text-title text-[22px] md:text-[35px] font-semibold">{name}</p>
                     <p className="text-body  md:text-[20px]">{shortDescription}</p>
                     <p className="text-body  md:text-[20px]">Rating: {rating}</p>
-                    <p className="text-body  md:text-[20px]">Price: {price}</p>
-                    {
-                        (role === undefined) || (role === 'customer') ?
-                        <div className='flex gap-2 '>
-                            <button
-                                onClick={handleAddToCart}
-                                className="btn-primary w-[70%] h-[35px] md:h-[50px] flex items-center justify-center gap-5 px-1 shrink-0"
-                            >Add to cart<span className='text-[20px]' ><BsFillCartPlusFill /></span></button>
+                    <div className='flex justify-between items-center'>
+                        <div>
+                            <p className={`text-body ${discount && 'line-through'} md:text-[20px]`}>{discount && 'Actual'} Price: {price}</p>
                             {
-                                availability &&
-                                <Link className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5" to={`/order/${_id}`}
-                                > Order</Link>
+                                discount &&
+                                <p className={`text-body md:text-[20px] ${discount && 'text-[green]'}`}>Discounted Price: {(discount * price) / 100}</p>
                             }
                         </div>
-                        : null
+                        <p className="text-body  md:text-[20px]">Type: {type}</p>
+                    </div>
+                    {
+                        (role === undefined) || (role === 'customer') ?
+                            <div className='flex gap-2 '>
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="btn-primary w-[70%] h-[35px] md:h-[50px] flex items-center justify-center gap-5 px-1 shrink-0"
+                                >Add to cart<span className='text-[20px]' ><BsFillCartPlusFill /></span></button>
+                                {
+                                    availability &&
+                                    <Link className="btn-primary w-[100%] h-[35px]  md:h-[50px] flex items-center justify-center gap-5" to={`/order/${_id}`}
+                                    > Order</Link>
+                                }
+                            </div>
+                            : null
                     }
                 </div>
                 <div>

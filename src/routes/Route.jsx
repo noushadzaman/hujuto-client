@@ -13,7 +13,9 @@ import Update from "../pages/Update/Update";
 import Contact from "../pages/Contact/Contact";
 import Car from "../pages/Car/Car";
 import Order from "../pages/Order/Order";
+import Deliver from "../pages/Deliver/Deliver";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Discount from "../pages/Discount/Discount";
 
 const router = createBrowserRouter([
     {
@@ -73,8 +75,16 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><Order /></PrivateRoute>
             },
             {
+                path: '/deliver',
+                element: <PrivateRoute><Deliver /></PrivateRoute>
+            },
+            {
                 path: '/dashboard',
                 element: <PrivateRoute><Dashboard /></PrivateRoute>
+            },
+            {
+                path: '/discount/:id',
+                element: <PrivateRoute><Discount /></PrivateRoute>
             },
         ]
     },

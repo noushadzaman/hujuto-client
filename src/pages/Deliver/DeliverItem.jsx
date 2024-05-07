@@ -5,7 +5,7 @@ import { Map, Marker } from "pigeon-maps"
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const DashboardItem = ({ singleOrder, refetch }) => {
+const DeliverItem = ({ singleOrder, refetch }) => {
     const axiosSecure = useAxiosSecure();
     const { _id, buyerName, buyerEmail, quantity, location, locationName, buyerPhoto, vehicleName, creditCard } = singleOrder;
     const [open, setOpen] = React.useState(false);
@@ -88,4 +88,4 @@ const DashboardItem = ({ singleOrder, refetch }) => {
     );
 };
 
-export default DashboardItem;
+export default DeliverItem;

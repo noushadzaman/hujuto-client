@@ -56,8 +56,7 @@ const Order = () => {
                     .then(() => {
                         const orderedNumber = data?.data?.orderedNumber === undefined ? quantity : data?.data?.orderedNumber + quantity || quantity;
                         console.log(orderedNumber)
-
-                        axiosSecure.patch(`/vehicleIncrease/${_id}`, { orderedNumber })
+                        axiosSecure.patch(`/orderIncrease/${_id}`, { orderedNumber })
                             .then(() => {
                                 navigate('/')
                                 Swal.fire({
@@ -69,7 +68,7 @@ const Order = () => {
                                 });
                             })
                             .catch(err => {
-                                console.log(err)
+                                console.log(err);
                             })
                     })
             })

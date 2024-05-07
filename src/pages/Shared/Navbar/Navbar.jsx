@@ -67,6 +67,16 @@ const Navbar = () => {
 
         {
             isAdmin === 'admin' &&
+            <NavLink to="/deliver">
+                <button className="button">
+                    <span>&nbsp;deliver&nbsp;</span>
+                    <span className="hover-text">&nbsp;deliver&nbsp;</span>
+                </button>
+            </NavLink>
+        }
+
+        {
+            isAdmin === 'admin' &&
             <NavLink to="/dashboard">
                 <button className="button">
                     <span>&nbsp;dashboard&nbsp;</span>
@@ -104,7 +114,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="flex items-center">
-                    <Link to={'/'}><img className="h-[25px]" src={logo} alt="" /></Link>
+                    <Link to={'/'}><img className="h-[25px] md:hidden lg:block" src={logo} alt="" /></Link>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
